@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Proiecte Web | Elevii lui Tudor Lapp</title>
+    <title>Portal Proiecte Web | Evaluare peer-to-peer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -17,7 +17,14 @@
             --border: #e2e8f0;
             --accent: #2563eb;
             --accent-2: #7c3aed;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
         }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -78,6 +85,116 @@
         .animate-fade-in {
             animation: fadeIn .35s ease forwards;
         }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 60;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.show { display: flex; }
+
+        .modal-panel {
+            width: min(980px, 100%);
+            max-height: 92vh;
+            overflow: auto;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 60px -20px rgba(15, 23, 42, 0.4);
+        }
+
+        .likert-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) repeat(5, minmax(42px, 56px));
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .likert-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .likert-cell input[type="radio"] {
+            width: 1.05rem;
+            height: 1.05rem;
+            accent-color: #2563eb;
+            cursor: pointer;
+        }
+
+        .score-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid #dbeafe;
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        .metric-bar {
+            width: 100%;
+            height: 8px;
+            border-radius: 999px;
+            background: #e2e8f0;
+            overflow: hidden;
+        }
+
+        .metric-bar > span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            border-radius: 999px;
+        }
+
+        .toast {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            z-index: 80;
+            background: #0f172a;
+            color: white;
+            padding: 0.9rem 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.45);
+            display: none;
+            max-width: 420px;
+        }
+
+        .toast.show { display: block; animation: fadeIn .25s ease; }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        @media (max-width: 900px) {
+            .likert-row {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+                padding: 1rem 0;
+            }
+
+            .likert-options {
+                display: grid;
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+                gap: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -100,22 +217,22 @@
     </nav>
 
     <header class="pt-32 pb-14 border-b border-slate-100 bg-white/70">
-        <div class="max-w-5xl mx-auto px-6 text-center">
+        <div class="max-w-6xl mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-5">
-                Platformă de centralizare pentru <br class="hidden md:block">
-                <span class="gradient-text">proiectele HTML ale elevilor</span>
+                Portal de centralizare și <br class="hidden md:block">
+                <span class="gradient-text">evaluare peer-to-peer</span>
             </h1>
-            <p id="heroDescription" class="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
-                Toate proiectele publicate prin GitHub Pages sunt adunate într-un singur loc, pentru acces rapid, evaluare și prezentare.
+            <p id="heroDescription" class="text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">
+                Elevii pot explora proiectele colegilor, pot completa un chestionar de evaluare și pot urmări indicatorii agregați pentru fiecare produs web.
             </p>
 
-            <div class="mt-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 max-w-4xl mx-auto items-center">
+            <div class="mt-10 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-4 max-w-5xl mx-auto items-center">
                 <div class="relative group">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors"></i>
                     <input
                         type="text"
                         id="searchInput"
-                        placeholder="Caută după numele elevului, categorie sau URL..."
+                        placeholder="Caută după numele elevului, categorie, URL sau cuvinte-cheie..."
                         class="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all outline-none text-slate-700 shadow-sm"
                     >
                 </div>
@@ -125,6 +242,25 @@
             </div>
 
             <div id="categoryFilters" class="mt-6 flex flex-wrap justify-center gap-3"></div>
+
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto text-left">
+                <div class="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm">
+                    <div class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 mb-2">Proces</div>
+                    <div class="text-sm text-slate-700 leading-relaxed">Accesare proiect, explorare, revenire în portal și completare formular cu criterii Likert și comentarii formative.</div>
+                </div>
+                <div class="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm">
+                    <div class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 mb-2">Scor</div>
+                    <div class="text-sm text-slate-700 leading-relaxed">Scor general ponderat din 5, medii pe criterii și clasament al celor mai bine evaluate proiecte.</div>
+                </div>
+                <div class="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm">
+                    <div class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 mb-2">Feedback</div>
+                    <div class="text-sm text-slate-700 leading-relaxed">Comentarii privind punctele forte, aspectele de îmbunătățit, răspunsul la nevoile publicului-țintă și feedback general.</div>
+                </div>
+                <div class="bg-amber-50 rounded-3xl border border-amber-200 p-5 shadow-sm">
+                    <div class="text-xs font-bold uppercase tracking-[0.16em] text-amber-700 mb-2">Notă tehnică</div>
+                    <div class="text-sm text-amber-800 leading-relaxed">Pe GitHub Pages, evaluările noi se salvează local în browser. Fișierul <strong>evaluari.json</strong> oferă setul inițial de date.</div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -133,9 +269,8 @@
             <i class="fa-solid fa-circle-exclamation text-red-500 text-3xl mb-4"></i>
             <h2 class="text-red-800 font-bold text-lg mb-2">Eroare la încărcarea datelor</h2>
             <p class="text-red-700 text-sm leading-relaxed">
-                Fișierul <code class="bg-red-100 px-2 py-1 rounded">elevi.json</code> nu a putut fi citit sau conține date invalide.
-                Verifică dacă fișierul există în același folder cu <code class="bg-red-100 px-2 py-1 rounded">index.html</code>
-                și dacă JSON-ul este corect formatat.
+                Fișierele <code class="bg-red-100 px-2 py-1 rounded">elevi.json</code> sau <code class="bg-red-100 px-2 py-1 rounded">evaluari.json</code> nu au putut fi citite.
+                Verifică dacă ambele există în același folder cu <code class="bg-red-100 px-2 py-1 rounded">index.html</code> și dacă JSON-ul este valid.
             </p>
         </div>
 
@@ -146,10 +281,10 @@
         </div>
 
         <section id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            <div class="skeleton h-80 rounded-3xl opacity-60"></div>
-            <div class="skeleton h-80 rounded-3xl opacity-60"></div>
-            <div class="skeleton h-80 rounded-3xl opacity-60"></div>
-            <div class="skeleton h-80 rounded-3xl opacity-60"></div>
+            <div class="skeleton h-[35rem] rounded-3xl opacity-60"></div>
+            <div class="skeleton h-[35rem] rounded-3xl opacity-60"></div>
+            <div class="skeleton h-[35rem] rounded-3xl opacity-60"></div>
+            <div class="skeleton h-[35rem] rounded-3xl opacity-60"></div>
         </section>
     </main>
 
@@ -161,12 +296,146 @@
                 <i class="fa-brands fa-js"></i>
                 <i class="fa-brands fa-github"></i>
             </div>
-            <p class="text-slate-700 font-medium">Portal pentru prezentarea proiectelor realizate de elevi</p>
-            <p class="text-slate-500 text-sm mt-2">GitHub Pages • HTML • CSS • JavaScript</p>
+            <p class="text-slate-700 font-medium">Portal pentru prezentarea și evaluarea proiectelor realizate de elevi</p>
+            <p class="text-slate-500 text-sm mt-2">GitHub Pages • HTML • CSS • JavaScript • Peer review</p>
         </div>
     </footer>
 
+    <div id="evaluationModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-panel">
+            <div class="p-6 md:p-8 border-b border-slate-200 sticky top-0 bg-white z-10 rounded-t-3xl">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">Chestionar de evaluare peer-to-peer</p>
+                        <h2 id="modalTitle" class="text-2xl font-extrabold text-slate-900">Evaluare proiect</h2>
+                        <p id="modalSubtitle" class="text-slate-600 mt-2 max-w-3xl">Completează evaluarea după ce ai explorat proiectul colegului.</p>
+                    </div>
+                    <button id="closeModalBtn" type="button" class="w-11 h-11 rounded-2xl border border-slate-200 hover:bg-slate-50 text-slate-700">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <form id="evaluationForm" class="p-6 md:p-8 space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-800 mb-2" for="evaluatorName">Numele evaluatorului</label>
+                        <input id="evaluatorName" name="evaluatorName" type="text" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Ex.: Andrei Ionescu">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-800 mb-2" for="evaluatorClass">Clasa / grupa</label>
+                        <input id="evaluatorClass" name="evaluatorClass" type="text" class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Ex.: XI-B">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-800 mb-2" for="visitedSite">Ai explorat site-ul?</label>
+                        <select id="visitedSite" name="visitedSite" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none">
+                            <option value="">Selectează</option>
+                            <option value="Da">Da, am explorat proiectul</option>
+                            <option value="Parțial">Parțial</option>
+                        </select>
+                    </div>
+                </div>
+
+                <section class="bg-slate-50 border border-slate-200 rounded-3xl p-5 md:p-6">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                        <div>
+                            <h3 class="text-lg font-extrabold text-slate-900">Criterii de evaluare</h3>
+                            <p class="text-sm text-slate-600 mt-1">Scară Likert: 1 = foarte slab, 2 = slab, 3 = acceptabil, 4 = bun, 5 = foarte bun.</p>
+                        </div>
+                        <div class="grid grid-cols-5 gap-2 text-center text-xs font-bold uppercase tracking-[0.16em] text-slate-500 min-w-[280px]">
+                            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                        </div>
+                    </div>
+                    <div id="criteriaContainer" class="space-y-5"></div>
+                </section>
+
+                <section class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-800 mb-2" for="strengthComment">Punctul forte principal</label>
+                        <textarea id="strengthComment" name="strengthComment" rows="4" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Ce ai apreciat cel mai mult la acest proiect?"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-800 mb-2" for="improvementComment">Ce ar trebui îmbunătățit în primul rând</label>
+                        <textarea id="improvementComment" name="improvementComment" rows="4" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Indică cea mai importantă direcție de îmbunătățire."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-800 mb-2" for="audienceComment">Cât de bine răspunde site-ul nevoilor publicului-țintă?</label>
+                        <textarea id="audienceComment" name="audienceComment" rows="4" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Explică pe scurt dacă soluția este potrivită pentru publicul vizat."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-800 mb-2" for="generalComment">Comentariu general pentru autor</label>
+                        <textarea id="generalComment" name="generalComment" rows="4" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Formulează un feedback general constructiv."></textarea>
+                    </div>
+                </section>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-3xl p-5 text-sm text-blue-900 leading-relaxed">
+                    Evaluarea se salvează în browserul curent și este integrată imediat în dashboard-ul proiectului. Pentru stocare comună, partajată între toți utilizatorii, va fi necesar ulterior un backend sau un serviciu precum Firebase, Supabase, Google Apps Script ori GitHub API.
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 justify-end">
+                    <button type="button" id="cancelModalBtn" class="px-5 py-3 rounded-2xl border border-slate-300 text-slate-700 font-bold hover:bg-slate-50">Renunță</button>
+                    <button type="submit" class="px-5 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-blue-600 transition-colors">Trimite evaluarea</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
     <script>
+        const STORAGE_KEY = 'portal-peer-review-submissions-v1';
+
+        const CRITERIA = [
+            {
+                key: 'relevanta',
+                title: 'Relevanța problemei abordate',
+                weight: 15,
+                prompt: 'Site-ul abordează o problemă reală și relevantă pentru societate sau pentru un anumit grup de utilizatori.'
+            },
+            {
+                key: 'claritate',
+                title: 'Claritatea scopului și a mesajului',
+                weight: 10,
+                prompt: 'Scopul site-ului și mesajul transmis sunt clare și ușor de înțeles.'
+            },
+            {
+                key: 'publicTinta',
+                title: 'Adecvarea pentru publicul-țintă',
+                weight: 15,
+                prompt: 'Site-ul este bine adaptat publicului-țintă pentru care a fost creat.'
+            },
+            {
+                key: 'utilitate',
+                title: 'Utilitatea și valoarea informațională',
+                weight: 15,
+                prompt: 'Informațiile oferite de site sunt utile, relevante și bine organizate.'
+            },
+            {
+                key: 'navigare',
+                title: 'Structura și navigarea',
+                weight: 10,
+                prompt: 'Site-ul este ușor de navigat, iar structura lui este clară.'
+            },
+            {
+                key: 'design',
+                title: 'Design vizual și atractivitate',
+                weight: 10,
+                prompt: 'Designul vizual al site-ului este atractiv, coerent și susține bine conținutul.'
+            },
+            {
+                key: 'tehnic',
+                title: 'Calitatea tehnică a realizării',
+                weight: 10,
+                prompt: 'Site-ul funcționează corect din punct de vedere tehnic și oferă o experiență stabilă.'
+            },
+            {
+                key: 'originalitate',
+                title: 'Originalitate și impact general',
+                weight: 15,
+                prompt: 'Proiectul este original și are potențial real de impact sau utilitate.'
+            }
+        ];
+
         const grid = document.getElementById('projectsGrid');
         const searchInput = document.getElementById('searchInput');
         const statsCounter = document.getElementById('statsCounter');
@@ -175,9 +444,20 @@
         const categoryFilters = document.getElementById('categoryFilters');
         const resetFiltersBtn = document.getElementById('resetFiltersBtn');
         const heroDescription = document.getElementById('heroDescription');
+        const evaluationModal = document.getElementById('evaluationModal');
+        const evaluationForm = document.getElementById('evaluationForm');
+        const criteriaContainer = document.getElementById('criteriaContainer');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalSubtitle = document.getElementById('modalSubtitle');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelModalBtn = document.getElementById('cancelModalBtn');
+        const toast = document.getElementById('toast');
 
         let allStudents = [];
+        let initialEvaluations = [];
+        let localEvaluations = [];
         let activeCategory = 'Toate';
+        let currentProjectId = null;
 
         function escapeHtml(value = '') {
             return String(value)
@@ -188,18 +468,23 @@
                 .replace(/'/g, '&#039;');
         }
 
+        function slugify(value = '') {
+            return String(value)
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '') || 'proiect';
+        }
+
         function normalizeUrl(rawUrl = '') {
             let url = String(rawUrl).trim();
-
             const markdownMatch = url.match(/\((https?:\/\/[^\s)]+)\)/i);
             if (markdownMatch) url = markdownMatch[1];
-
             url = url.replace(/^\[|\]$/g, '').trim();
-
-            if (!/^https?:\/\//i.test(url)) {
+            if (!/^https?:\/\//i.test(url) && url) {
                 url = 'https://' + url.replace(/^\/+/, '');
             }
-
             return url;
         }
 
@@ -212,32 +497,159 @@
             }
         }
 
-        function getJsonUrl() {
-            return new URL('./elevi.json', window.location.href).href;
+        function getJsonUrl(fileName) {
+            return new URL(`./${fileName}`, window.location.href).href;
         }
 
-        async function fetchStudents() {
-            const response = await fetch(getJsonUrl(), { cache: 'no-store' });
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
+        function safeAverage(values) {
+            const valid = values.filter(value => typeof value === 'number' && !Number.isNaN(value));
+            if (!valid.length) return 0;
+            return valid.reduce((sum, value) => sum + value, 0) / valid.length;
+        }
+
+        function round(value, decimals = 2) {
+            return Number(value.toFixed(decimals));
+        }
+
+        function scoreLabel(score) {
+            if (score >= 4.5) return 'Excelent';
+            if (score >= 4.0) return 'Foarte bun';
+            if (score >= 3.5) return 'Bun';
+            if (score >= 3.0) return 'Acceptabil';
+            return 'În dezvoltare';
+        }
+
+        function metricColor(score) {
+            if (score >= 4.2) return 'text-emerald-700 bg-emerald-50 border-emerald-200';
+            if (score >= 3.5) return 'text-blue-700 bg-blue-50 border-blue-200';
+            if (score >= 3.0) return 'text-amber-700 bg-amber-50 border-amber-200';
+            return 'text-red-700 bg-red-50 border-red-200';
+        }
+
+        async function fetchJson(fileName) {
+            const response = await fetch(getJsonUrl(fileName), { cache: 'no-store' });
+            if (!response.ok) throw new Error(`${fileName}: HTTP ${response.status}`);
+            return response.json();
+        }
+
+        function normalizeStudents(data) {
+            if (!Array.isArray(data)) throw new Error('elevi.json trebuie să conțină un array.');
+            return data.map((student, index) => {
+                const nume = (student.nume || `Elev ${index + 1}`).trim();
+                const categorie = (student.categorie || 'Necategorizat').trim();
+                const url = normalizeUrl(student.url || '');
+                const id = (student.id || `${slugify(nume)}-${index + 1}`).trim();
+                const urlValid = isValidHttpUrl(url);
+                let domain = 'link invalid';
+                try {
+                    if (urlValid) domain = new URL(url).hostname.replace(/^www\./, '');
+                } catch {}
+                return {
+                    id,
+                    nume,
+                    categorie,
+                    url,
+                    urlValid,
+                    domain
+                };
+            }).sort((a, b) => a.nume.localeCompare(b.nume, 'ro', { sensitivity: 'base' }));
+        }
+
+        function normalizeEvaluations(data) {
+            if (!Array.isArray(data)) throw new Error('evaluari.json trebuie să conțină un array.');
+            return data.map((item, index) => {
+                const normalized = {
+                    id: item.id || `eval-init-${index + 1}`,
+                    projectId: String(item.projectId || '').trim(),
+                    evaluatorName: String(item.evaluatorName || 'Evaluator anonim').trim(),
+                    evaluatorClass: String(item.evaluatorClass || '').trim(),
+                    visitedSite: String(item.visitedSite || 'Da').trim(),
+                    submittedAt: item.submittedAt || new Date().toISOString(),
+                    strengthComment: String(item.strengthComment || '').trim(),
+                    improvementComment: String(item.improvementComment || '').trim(),
+                    audienceComment: String(item.audienceComment || '').trim(),
+                    generalComment: String(item.generalComment || '').trim(),
+                    source: item.source || 'json'
+                };
+                CRITERIA.forEach(criteria => {
+                    const raw = Number(item[criteria.key]);
+                    normalized[criteria.key] = Math.min(5, Math.max(1, Number.isFinite(raw) ? raw : 3));
+                });
+                return normalized;
+            }).filter(item => item.projectId);
+        }
+
+        function loadLocalEvaluations() {
+            try {
+                const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                return normalizeEvaluations(Array.isArray(parsed) ? parsed : []);
+            } catch {
+                return [];
             }
-            const data = await response.json();
-            if (!Array.isArray(data)) {
-                throw new Error('Fișierul JSON trebuie să conțină un array de obiecte.');
+        }
+
+        function saveLocalEvaluations() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(localEvaluations));
+        }
+
+        function getAllEvaluations() {
+            return [...initialEvaluations, ...localEvaluations];
+        }
+
+        function getProjectEvaluations(projectId) {
+            return getAllEvaluations().filter(item => item.projectId === projectId);
+        }
+
+        function summarizeProject(projectEvaluations) {
+            if (!projectEvaluations.length) {
+                return {
+                    count: 0,
+                    weightedScore: 0,
+                    criterionAverages: Object.fromEntries(CRITERIA.map(c => [c.key, 0])),
+                    scoreLabel: 'Fără evaluări',
+                    summary: 'Acest proiect nu are încă evaluări. După completarea chestionarelor, aici va apărea sinteza feedback-ului colectat.',
+                    topStrength: 'Nicio evaluare disponibilă',
+                    mainImprovement: 'Nicio recomandare disponibilă'
+                };
             }
-            return data
-                .map((student, index) => {
-                    const safeStudent = {
-                        id: index + 1,
-                        nume: (student.nume || `Elev ${index + 1}`).trim(),
-                        categorie: (student.categorie || 'Necategorizat').trim(),
-                        url: normalizeUrl(student.url || '')
-                    };
-                    safeStudent.urlValid = isValidHttpUrl(safeStudent.url);
-                    safeStudent.domain = safeStudent.urlValid ? new URL(safeStudent.url).hostname.replace(/^www\./, '') : 'link invalid';
-                    return safeStudent;
-                })
-                .sort((a, b) => a.nume.localeCompare(b.nume, 'ro', { sensitivity: 'base' }));
+
+            const criterionAverages = {};
+            CRITERIA.forEach(criteria => {
+                criterionAverages[criteria.key] = round(safeAverage(projectEvaluations.map(item => Number(item[criteria.key]))), 2);
+            });
+
+            const weightedScore = round(CRITERIA.reduce((sum, criteria) => {
+                return sum + criterionAverages[criteria.key] * (criteria.weight / 100);
+            }, 0), 2);
+
+            const sortedCriteria = [...CRITERIA].sort((a, b) => criterionAverages[b.key] - criterionAverages[a.key]);
+            const lowestCriteria = [...CRITERIA].sort((a, b) => criterionAverages[a.key] - criterionAverages[b.key]);
+            const topStrength = sortedCriteria[0]?.title || 'Punct forte';
+            const mainImprovement = lowestCriteria[0]?.title || 'Direcție de îmbunătățire';
+
+            const lastGeneralComments = projectEvaluations
+                .map(item => item.generalComment)
+                .filter(Boolean)
+                .slice(-2);
+
+            const summaryParts = [
+                `Evaluatorii apreciază în principal <strong>${escapeHtml(topStrength.toLowerCase())}</strong>.`,
+                `Principala direcție de consolidare este <strong>${escapeHtml(mainImprovement.toLowerCase())}</strong>.`
+            ];
+
+            if (lastGeneralComments.length) {
+                summaryParts.push(`Observație recurentă: „${escapeHtml(lastGeneralComments[lastGeneralComments.length - 1].slice(0, 120))}${lastGeneralComments[lastGeneralComments.length - 1].length > 120 ? '…' : ''}”`);
+            }
+
+            return {
+                count: projectEvaluations.length,
+                weightedScore,
+                criterionAverages,
+                scoreLabel: scoreLabel(weightedScore),
+                summary: summaryParts.join(' '),
+                topStrength,
+                mainImprovement
+            };
         }
 
         function getCategories(data) {
@@ -261,35 +673,78 @@
             });
         }
 
-        function updateStats(filtered) {
-            const total = allStudents.length;
-            const visible = filtered.length;
-            const categoriesCount = new Set(allStudents.map(item => item.categorie)).size;
-            statsCounter.innerHTML = `<span>Afișate: <strong class="text-slate-900">${visible}</strong> din <strong class="text-blue-600">${total}</strong></span><span class="text-slate-300">•</span><span>Categorii: <strong class="text-slate-900">${categoriesCount}</strong></span>`;
-            heroDescription.textContent = `Platforma centralizează ${total} proiecte web publicate de elevi, grupate pe categorii și accesibile printr-o interfață unică.`;
+        function renderCriteriaInputs() {
+            criteriaContainer.innerHTML = '';
+            CRITERIA.forEach((criteria, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'border-b border-slate-200 pb-5 last:border-b-0 last:pb-0';
+                wrapper.innerHTML = `
+                    <div class="likert-row">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="score-pill">${index + 1}. ${escapeHtml(criteria.title)}</span>
+                                <span class="text-xs font-semibold text-slate-500">Pondere: ${criteria.weight}%</span>
+                            </div>
+                            <p class="text-sm text-slate-700 leading-relaxed">${escapeHtml(criteria.prompt)}</p>
+                        </div>
+                        <div class="likert-options contents md:contents">
+                            ${[1,2,3,4,5].map(value => `
+                                <label class="likert-cell bg-white border border-slate-200 rounded-2xl py-3 hover:border-blue-300 cursor-pointer">
+                                    <input type="radio" name="${criteria.key}" value="${value}" required aria-label="${criteria.title} - scor ${value}">
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                criteriaContainer.appendChild(wrapper);
+            });
+        }
+
+        function updateStats(filteredStudents) {
+            const totalProjects = allStudents.length;
+            const visible = filteredStudents.length;
+            const totalEvaluations = getAllEvaluations().length;
+            const evaluatedProjects = allStudents.filter(student => getProjectEvaluations(student.id).length > 0).length;
+            statsCounter.innerHTML = `
+                <span>Afișate: <strong class="text-slate-900">${visible}</strong> / <strong class="text-blue-600">${totalProjects}</strong></span>
+                <span class="text-slate-300">•</span>
+                <span>Evaluări: <strong class="text-slate-900">${totalEvaluations}</strong></span>
+                <span class="text-slate-300">•</span>
+                <span>Proiecte evaluate: <strong class="text-slate-900">${evaluatedProjects}</strong></span>
+            `;
+            heroDescription.textContent = `Platforma centralizează ${totalProjects} proiecte web și ${totalEvaluations} evaluări peer-to-peer. Fiecare card afișează indicatori agregați privind relevanța, utilitatea, designul și calitatea tehnică.`;
+        }
+
+        function getLeaderboardTopIds() {
+            return [...allStudents]
+                .map(student => ({ student, summary: summarizeProject(getProjectEvaluations(student.id)) }))
+                .filter(item => item.summary.count > 0)
+                .sort((a, b) => b.summary.weightedScore - a.summary.weightedScore || b.summary.count - a.summary.count)
+                .slice(0, 3)
+                .map(item => item.student.id);
         }
 
         function render(data) {
             grid.innerHTML = '';
             emptyState.classList.toggle('hidden', data.length !== 0);
+            if (!data.length) return;
 
-            if (data.length === 0) return;
+            const leaderboardIds = getLeaderboardTopIds();
 
             data.forEach((student, index) => {
-                const initials = student.nume
-                    .split(/\s+/)
-                    .filter(Boolean)
-                    .slice(0, 2)
-                    .map(part => part[0].toUpperCase())
-                    .join('');
-
+                const evaluations = getProjectEvaluations(student.id);
+                const summary = summarizeProject(evaluations);
+                const initials = student.nume.split(/\s+/).filter(Boolean).slice(0, 2).map(part => part[0].toUpperCase()).join('') || 'EV';
                 const statusBadge = student.urlValid
                     ? '<span class="inline-flex items-center gap-1 text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded-full text-[11px] font-semibold"><i class="fa-solid fa-circle-check"></i> Link valid</span>'
                     : '<span class="inline-flex items-center gap-1 text-red-700 bg-red-50 border border-red-200 px-2 py-1 rounded-full text-[11px] font-semibold"><i class="fa-solid fa-triangle-exclamation"></i> Link invalid</span>';
-
-                const buttonHtml = student.urlValid
-                    ? `<a href="${escapeHtml(student.url)}" target="_blank" rel="noopener noreferrer" class="mt-auto w-full inline-flex items-center justify-center py-3 bg-slate-900 hover:bg-blue-600 text-white transition-all rounded-2xl font-bold text-sm shadow-sm">Deschide proiectul <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i></a>`
-                    : `<button disabled class="mt-auto w-full inline-flex items-center justify-center py-3 bg-slate-200 text-slate-500 rounded-2xl font-bold text-sm cursor-not-allowed">Link indisponibil</button>`;
+                const rankBadge = leaderboardIds.includes(student.id)
+                    ? `<span class="inline-flex items-center gap-1 text-amber-700 bg-amber-50 border border-amber-200 px-2 py-1 rounded-full text-[11px] font-semibold"><i class="fa-solid fa-trophy"></i> Top evaluări</span>`
+                    : '';
+                const scoreClass = metricColor(summary.weightedScore);
+                const scorePill = summary.count
+                    ? `<span class="inline-flex items-center gap-1 border ${scoreClass} px-2 py-1 rounded-full text-[11px] font-semibold"><i class="fa-solid fa-star"></i> ${summary.weightedScore}/5 · ${summary.scoreLabel}</span>`
+                    : '<span class="inline-flex items-center gap-1 border border-slate-200 bg-slate-50 text-slate-600 px-2 py-1 rounded-full text-[11px] font-semibold"><i class="fa-regular fa-star"></i> Fără evaluări</span>';
 
                 const card = document.createElement('article');
                 card.className = 'project-card bg-white rounded-3xl overflow-hidden border border-slate-200 flex flex-col animate-fade-in shadow-sm';
@@ -297,8 +752,11 @@
                 card.innerHTML = `
                     <div class="p-6 border-b border-slate-100 bg-gradient-to-br from-slate-50 to-blue-50">
                         <div class="flex items-start justify-between gap-3 mb-4">
-                            <div class="w-14 h-14 rounded-2xl bg-slate-900 text-white flex items-center justify-center text-lg font-extrabold shadow-sm">${escapeHtml(initials || 'EV')}</div>
-                            ${statusBadge}
+                            <div class="w-14 h-14 rounded-2xl bg-slate-900 text-white flex items-center justify-center text-lg font-extrabold shadow-sm">${escapeHtml(initials)}</div>
+                            <div class="flex flex-col items-end gap-2">
+                                ${statusBadge}
+                                ${rankBadge}
+                            </div>
                         </div>
                         <div class="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700 bg-blue-100 border border-blue-200 px-3 py-1 rounded-full mb-4">
                             <i class="fa-solid fa-layer-group"></i>
@@ -308,24 +766,73 @@
                         <p class="text-sm text-slate-500 break-all">${escapeHtml(student.domain)}</p>
                     </div>
                     <div class="p-6 flex-1 flex flex-col gap-4">
-                        <div class="text-sm text-slate-600 leading-relaxed">
-                            Platformă publicată prin <strong>GitHub Pages</strong> și inclusă în catalogul centralizat al proiectelor elevilor.
+                        <div class="flex flex-wrap gap-2">
+                            ${scorePill}
+                            <span class="inline-flex items-center gap-1 border border-slate-200 bg-slate-50 text-slate-700 px-2 py-1 rounded-full text-[11px] font-semibold"><i class="fa-solid fa-square-poll-vertical"></i> ${summary.count} evaluări</span>
                         </div>
-                        <div class="text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 break-all">
-                            ${escapeHtml(student.url)}
+
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 rounded-2xl border border-slate-200 p-3">
+                                <div class="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 mb-1">Relevanță</div>
+                                <div class="font-extrabold text-slate-900">${summary.criterionAverages.relevanta || 0}</div>
+                            </div>
+                            <div class="bg-slate-50 rounded-2xl border border-slate-200 p-3">
+                                <div class="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 mb-1">Utilitate</div>
+                                <div class="font-extrabold text-slate-900">${summary.criterionAverages.utilitate || 0}</div>
+                            </div>
+                            <div class="bg-slate-50 rounded-2xl border border-slate-200 p-3">
+                                <div class="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 mb-1">Design</div>
+                                <div class="font-extrabold text-slate-900">${summary.criterionAverages.design || 0}</div>
+                            </div>
+                            <div class="bg-slate-50 rounded-2xl border border-slate-200 p-3">
+                                <div class="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 mb-1">Tehnic</div>
+                                <div class="font-extrabold text-slate-900">${summary.criterionAverages.tehnic || 0}</div>
+                            </div>
                         </div>
-                        ${buttonHtml}
+
+                        <div>
+                            <div class="flex items-center justify-between text-xs font-bold uppercase tracking-[0.14em] text-slate-500 mb-2">
+                                <span>Scor general</span>
+                                <span>${summary.weightedScore}/5</span>
+                            </div>
+                            <div class="metric-bar"><span style="width:${Math.max(0, Math.min(100, summary.weightedScore * 20))}%"></span></div>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-sm text-slate-700">
+                            <div class="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 mb-2">Comentariu general agregat</div>
+                            <div class="line-clamp-3 leading-relaxed">${summary.summary}</div>
+                        </div>
+
+                        <div class="text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 break-all">${escapeHtml(student.url)}</div>
+
+                        <div class="grid grid-cols-1 gap-3 mt-auto">
+                            ${student.urlValid ? `<a href="${escapeHtml(student.url)}" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center py-3 bg-slate-900 hover:bg-blue-600 text-white transition-all rounded-2xl font-bold text-sm shadow-sm">Deschide proiectul <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i></a>` : `<button disabled class="w-full inline-flex items-center justify-center py-3 bg-slate-200 text-slate-500 rounded-2xl font-bold text-sm cursor-not-allowed">Link indisponibil</button>`}
+                            <button type="button" data-evaluate-id="${escapeHtml(student.id)}" class="w-full inline-flex items-center justify-center py-3 bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-100 transition-all rounded-2xl font-bold text-sm">Evaluează acest proiect <i class="fa-solid fa-clipboard-check ml-2 text-xs"></i></button>
+                        </div>
                     </div>
                 `;
                 grid.appendChild(card);
+            });
+
+            document.querySelectorAll('[data-evaluate-id]').forEach(button => {
+                button.addEventListener('click', () => openEvaluationModal(button.getAttribute('data-evaluate-id')));
             });
         }
 
         function applyFilters() {
             const term = searchInput.value.toLowerCase().trim();
             const filtered = allStudents.filter(student => {
-                const matchesSearch = [student.nume, student.categorie, student.url, student.domain]
-                    .some(value => String(value).toLowerCase().includes(term));
+                const summary = summarizeProject(getProjectEvaluations(student.id));
+                const textPool = [
+                    student.nume,
+                    student.categorie,
+                    student.url,
+                    student.domain,
+                    summary.topStrength,
+                    summary.mainImprovement,
+                    summary.summary.replace(/<[^>]+>/g, ' ')
+                ].join(' ').toLowerCase();
+                const matchesSearch = textPool.includes(term);
                 const matchesCategory = activeCategory === 'Toate' || student.categorie === activeCategory;
                 return matchesSearch && matchesCategory;
             });
@@ -333,20 +840,116 @@
             render(filtered);
         }
 
+        function openEvaluationModal(projectId) {
+            const project = allStudents.find(item => item.id === projectId);
+            if (!project) return;
+            currentProjectId = projectId;
+            modalTitle.textContent = `Evaluare: ${project.nume}`;
+            modalSubtitle.textContent = `Evaluezi proiectul din categoria „${project.categorie}”. Vizitează site-ul, revino în portal și completează formularul.`;
+            evaluationForm.reset();
+            evaluationModal.classList.add('show');
+            evaluationModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('evaluatorName').focus();
+        }
+
+        function closeEvaluationModal() {
+            evaluationModal.classList.remove('show');
+            evaluationModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            currentProjectId = null;
+        }
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            clearTimeout(showToast._timer);
+            showToast._timer = setTimeout(() => toast.classList.remove('show'), 3200);
+        }
+
+        function buildEvaluationFromForm(formData) {
+            const evaluation = {
+                id: `eval-local-${Date.now()}`,
+                projectId: currentProjectId,
+                evaluatorName: String(formData.get('evaluatorName') || '').trim(),
+                evaluatorClass: String(formData.get('evaluatorClass') || '').trim(),
+                visitedSite: String(formData.get('visitedSite') || '').trim(),
+                strengthComment: String(formData.get('strengthComment') || '').trim(),
+                improvementComment: String(formData.get('improvementComment') || '').trim(),
+                audienceComment: String(formData.get('audienceComment') || '').trim(),
+                generalComment: String(formData.get('generalComment') || '').trim(),
+                submittedAt: new Date().toISOString(),
+                source: 'localStorage'
+            };
+            CRITERIA.forEach(criteria => {
+                evaluation[criteria.key] = Number(formData.get(criteria.key));
+            });
+            return evaluation;
+        }
+
+        function validateEvaluation(evaluation) {
+            if (!evaluation.projectId) return 'Proiectul selectat lipsește.';
+            if (!evaluation.evaluatorName) return 'Numele evaluatorului este obligatoriu.';
+            if (!evaluation.visitedSite) return 'Confirmarea explorării site-ului este obligatorie.';
+            for (const criteria of CRITERIA) {
+                if (![1,2,3,4,5].includes(Number(evaluation[criteria.key]))) {
+                    return `Completează scorul pentru criteriul „${criteria.title}”.`;
+                }
+            }
+            if (!evaluation.strengthComment || !evaluation.improvementComment || !evaluation.audienceComment || !evaluation.generalComment) {
+                return 'Toate comentariile sunt obligatorii pentru un feedback formativ complet.';
+            }
+            return '';
+        }
+
         async function init() {
             try {
-                allStudents = await fetchStudents();
+                renderCriteriaInputs();
+                const [studentsData, evaluationsData] = await Promise.all([
+                    fetchJson('elevi.json'),
+                    fetchJson('evaluari.json')
+                ]);
+                allStudents = normalizeStudents(studentsData);
+                initialEvaluations = normalizeEvaluations(evaluationsData).filter(item => allStudents.some(student => student.id === item.projectId));
+                localEvaluations = loadLocalEvaluations().filter(item => allStudents.some(student => student.id === item.projectId));
                 errorBox.classList.add('hidden');
                 renderCategoryFilters(getCategories(allStudents));
                 applyFilters();
             } catch (error) {
-                console.error('Eroare la încărcarea elevi.json:', error);
+                console.error('Eroare la inițializare:', error);
                 grid.innerHTML = '';
                 emptyState.classList.add('hidden');
                 errorBox.classList.remove('hidden');
                 statsCounter.innerHTML = '<span>Date indisponibile</span>';
             }
         }
+
+        evaluationForm.addEventListener('submit', event => {
+            event.preventDefault();
+            const formData = new FormData(evaluationForm);
+            const evaluation = buildEvaluationFromForm(formData);
+            const validationMessage = validateEvaluation(evaluation);
+            if (validationMessage) {
+                showToast(validationMessage);
+                return;
+            }
+            localEvaluations.push(evaluation);
+            saveLocalEvaluations();
+            closeEvaluationModal();
+            applyFilters();
+            showToast('Evaluarea a fost salvată local și integrată în dashboard-ul proiectului.');
+        });
+
+        closeModalBtn.addEventListener('click', closeEvaluationModal);
+        cancelModalBtn.addEventListener('click', closeEvaluationModal);
+        evaluationModal.addEventListener('click', event => {
+            if (event.target === evaluationModal) closeEvaluationModal();
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && evaluationModal.classList.contains('show')) {
+                closeEvaluationModal();
+            }
+        });
 
         searchInput.addEventListener('input', applyFilters);
         resetFiltersBtn.addEventListener('click', () => {
