@@ -559,8 +559,10 @@
         }
 
         function isAppsScriptConfigured() {
-            return CONFIG.appsScriptUrl && !CONFIG.appsScriptUrl.includes('https://script.google.com/macros/s/AKfycbxBS_-DkwJX0eaheyBDrfF0_wdShCO_DlFQtlssbNdyVKAtt6YH1zyAGmmIiySc7ADo/exec');
-        }
+    return typeof CONFIG.appsScriptUrl === 'string'
+        && CONFIG.appsScriptUrl.trim() !== ''
+        && CONFIG.appsScriptUrl.startsWith('https://script.google.com/macros/s/');
+}
 
         function buildSummaryFromEvaluations(projectEvaluations) {
             if (!projectEvaluations.length) {
