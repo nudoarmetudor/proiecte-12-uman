@@ -559,10 +559,10 @@
         }
 
         function isAppsScriptConfigured() {
-    return typeof CONFIG.appsScriptUrl === 'string'
-        && CONFIG.appsScriptUrl.trim() !== ''
-        && CONFIG.appsScriptUrl.startsWith('https://script.google.com/macros/s/');
-}
+            return typeof CONFIG.appsScriptUrl === 'string'
+                && CONFIG.appsScriptUrl.trim() !== ''
+                && CONFIG.appsScriptUrl.startsWith('https://script.google.com/macros/s/');
+        }
 
         function buildSummaryFromEvaluations(projectEvaluations) {
             if (!projectEvaluations.length) {
