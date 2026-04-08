@@ -1,174 +1,177 @@
-```html
 <!DOCTYPE html>
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV | Tudor Lapp - Profesor de Informatică</title>
+    <title>Portal Proiecte Web | Elevii lui Tudor Lapp</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
         
         body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
         }
 
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animație pentru apariția cardurilor */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease forwards;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="text-slate-900">
 
-    <!-- Navigație -->
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="text-xl font-bold tracking-tight text-blue-600">Tudor Lapp</span>
-            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-wider">
-                <a href="#acasa" class="hover:text-blue-600 transition">Acasă</a>
-                <a href="#despre" class="hover:text-blue-600 transition">Despre</a>
-                <a href="#experienta" class="hover:text-blue-600 transition">Experiență</a>
-                <a href="#abilitati" class="hover:text-blue-600 transition">Abilități</a>
+    <!-- Header / Navigație -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-blue-600 p-2 rounded-lg">
+                    <i class="fa-solid fa-code text-white text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-lg font-bold tracking-tight">Portal <span class="gradient-text">Proiecte Web</span></span>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Coordonator: Tudor Lapp</p>
+                </div>
             </div>
-            <button class="md:hidden" onclick="toggleMenu()">
-                <i class="fa-solid fa-bars text-xl"></i>
-            </button>
+            <div class="flex items-center space-x-4">
+                <span class="hidden md:inline text-sm font-medium text-slate-500">Total Proiecte: <span class="text-blue-600 font-bold">27</span></span>
+                <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-slate-600 transition">
+                    <i class="fa-brands fa-github text-2xl"></i>
+                </a>
+            </div>
         </div>
     </nav>
 
-    <!-- Erou / Hero Section -->
-    <section id="acasa" class="pt-32 pb-20 gradient-bg text-white">
-        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-            <div class="flex-1 space-y-6">
-                <div class="inline-block px-4 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-sm font-medium">
-                    Profesor de Informatică & Enthusiast AI
-                </div>
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight">Salut, sunt <span class="text-blue-400">Tudor</span>.</h1>
-                <p class="text-lg text-slate-300 max-w-xl">
-                    Cu o experiență de peste 5 ani în educație, facilitez accesul noii generații la lumea tehnologiei în Chișinău, Moldova. 
-                </p>
-                <div class="flex gap-4 pt-4">
-                    <a href="mailto:contact@email.com" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition shadow-lg shadow-blue-500/20">
-                        Contactează-mă
-                    </a>
-                    <div class="flex items-center space-x-4 ml-4">
-                        <a href="#" class="text-slate-400 hover:text-white transition text-2xl"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="#" class="text-slate-400 hover:text-white transition text-2xl"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="relative">
-                <div class="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden border-4 border-white/10 rotate-3 shadow-2xl">
-                    <!-- Folosim un placeholder pentru imaginea de profil -->
-                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=500&auto=format&fit=crop" alt="Portret Tudor Lapp" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
-                </div>
-                <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl hidden md:block">
-                    <p class="text-slate-900 font-bold text-2xl">5+</p>
-                    <p class="text-slate-500 text-xs uppercase font-bold tracking-widest">Ani Experiență</p>
-                </div>
+    <!-- Erou / Introducere -->
+    <header class="pt-32 pb-16 bg-white border-b border-slate-100">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Explorați Creativitatea <span class="gradient-text">Viitorilor Programatori</span></h1>
+            <p class="text-lg text-slate-600 leading-relaxed">
+                Această platformă centralizează site-urile create de elevii clasei de informatică. Fiecare proiect reprezintă un pas către stăpânirea tehnologiilor web și a designului digital.
+            </p>
+            
+            <!-- Bara de Căutare -->
+            <div class="mt-10 relative max-w-lg mx-auto">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" placeholder="Caută un elev sau un proiect..." 
+                    class="w-full pl-12 pr-4 py-3 bg-slate-100 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none text-slate-700">
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Despre Mine -->
-    <section id="despre" class="py-20 max-w-5xl mx-auto px-6">
-        <div class="grid md:grid-cols-3 gap-12 items-start">
-            <div class="md:col-span-1">
-                <h2 class="text-3xl font-bold border-l-4 border-blue-600 pl-4">Despre mine</h2>
-            </div>
-            <div class="md:col-span-2 text-slate-600 leading-relaxed text-lg">
-                <p class="mb-6">
-                    Mă numesc Tudor Lapp și sunt pasionat de educație și modul în care calculatoarele pot schimba viitorul. Locuiesc și lucrez în Chișinău, unde am dedicat ultimii 5 ani instruirii tinerilor în domeniul algoritmicii și programării.
-                </p>
-                <p>
-                    Sunt profund interesat de <strong>Inteligența Artificială</strong> și de aplicabilitatea acesteia în procesul educațional. Cred cu tărie că înțelegerea tehnologiei nu este doar o abilitate, ci un limbaj fundamental pentru succesul în secolul XXI.
-                </p>
-            </div>
+    <!-- Grid Proiecte -->
+    <main class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <!-- Cardurile vor fi generate de JavaScript pentru a fi ușor de gestionat (toate cele 27) -->
         </div>
-    </section>
-
-    <!-- Experiență -->
-    <section id="experienta" class="py-20 bg-slate-100">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 text-center">Experiență Profesională</h2>
-            <div class="space-y-8">
-                <!-- Loc de munca 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex flex-col md:flex-row justify-between mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold">Profesor de Informatică</h3>
-                            <p class="text-blue-600 font-medium">Liceul Teoretic / Academia de IT</p>
-                        </div>
-                        <span class="text-slate-500 font-medium mt-2 md:mt-0">2019 — Prezent</span>
-                    </div>
-                    <ul class="list-disc list-inside text-slate-600 space-y-2">
-                        <li>Predarea conceptelor de bază: algoritmi, structuri de date și logică.</li>
-                        <li>Dezvoltarea curriculum-ului pentru cursuri de programare în Python și C++.</li>
-                        <li>Coordonarea proiectelor elevilor bazate pe soluții web și automatizări.</li>
-                        <li>Integrarea instrumentelor de AI în sala de clasă pentru personalizarea învățării.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Abilități & Interese -->
-    <section id="abilitati" class="py-20 max-w-5xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-12 text-center">Competențe Tehnice</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="skill-card bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center">
-                <i class="fa-brands fa-python text-4xl text-blue-500 mb-4"></i>
-                <h4 class="font-bold text-slate-800">Python</h4>
-            </div>
-            <div class="skill-card bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center">
-                <i class="fa-solid fa-code text-4xl text-blue-400 mb-4"></i>
-                <h4 class="font-bold text-slate-800">C++</h4>
-            </div>
-            <div class="skill-card bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center">
-                <i class="fa-solid fa-brain text-4xl text-purple-500 mb-4"></i>
-                <h4 class="font-bold text-slate-800">AI / ML Basics</h4>
-            </div>
-            <div class="skill-card bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center">
-                <i class="fa-solid fa-chalkboard-user text-4xl text-green-500 mb-4"></i>
-                <h4 class="font-bold text-slate-800">Pedagogie</h4>
-            </div>
-        </div>
-
-        <div class="mt-16 bg-blue-600 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-center gap-8">
-            <div class="flex-1">
-                <h3 class="text-2xl font-bold mb-4">Interesat de viitorul AI</h3>
-                <p class="text-blue-100 opacity-90">
-                    Sunt în continuă explorare a modului în care modelele LLM și computer vision pot fi utilizate pentru a optimiza predarea informaticii. Caut mereu colaborări pe proiecte ce implică inteligența artificială.
-                </p>
-            </div>
-            <a href="mailto:contact@email.com" class="px-8 py-3 bg-white text-blue-600 rounded-lg font-bold hover:bg-blue-50 transition">
-                Hai să discutăm
-            </a>
-        </div>
-    </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-slate-200">
-        <div class="max-w-5xl mx-auto px-6 text-center text-slate-500 text-sm">
-            <p>© 2024 Tudor Lapp. Construit cu pasiune în Chișinău.</p>
+    <footer class="bg-slate-900 text-white py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-8">
+                <i class="fa-brands fa-html5 text-3xl opacity-50"></i>
+                <i class="fa-brands fa-css3-alt text-3xl opacity-50"></i>
+                <i class="fa-brands fa-js text-3xl opacity-50"></i>
+                <i class="fa-brands fa-github text-3xl opacity-50"></i>
+            </div>
+            <p class="text-slate-400 mb-2">Proiect educațional coordonat de <strong>Tudor Lapp</strong></p>
+            <p class="text-slate-500 text-sm">Chișinău, Moldova • 2024</p>
         </div>
     </footer>
 
     <script>
-        function toggleMenu() {
-            // Logica pentru meniul de mobil (simpla pentru demo)
-            const nav = document.querySelector('.hidden.md\\:flex');
-            nav.classList.toggle('hidden');
+        // Datele celor 27 de elevi (Mockup)
+        // În realitate, vei completa aici numele și link-urile GitHub Pages ale elevilor tăi
+        const students = Array.from({ length: 27 }, (_, i) => ({
+            id: i + 1,
+            name: `Elev ${i + 1}`,
+            projectTitle: `Proiect Portofoliu v${(i % 3) + 1}`,
+            githubUser: `elev${i + 1}-github`,
+            category: i % 2 === 0 ? 'Web Design' : 'Web Dev',
+            image: `https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=400&auto=format&fit=crop&sig=${i}`
+        }));
+
+        const grid = document.getElementById('projectsGrid');
+        const searchInput = document.getElementById('searchInput');
+
+        function renderProjects(filter = '') {
+            grid.innerHTML = '';
+            
+            const filtered = students.filter(s => 
+                s.name.toLowerCase().includes(filter.toLowerCase()) || 
+                s.projectTitle.toLowerCase().includes(filter.toLowerCase())
+            );
+
+            filtered.forEach((student, index) => {
+                const card = document.createElement('div');
+                card.className = 'project-card bg-white rounded-3xl overflow-hidden border border-slate-200 flex flex-col animate-fade-in';
+                card.style.animationDelay = `${index * 0.05}s`;
+                
+                card.innerHTML = `
+                    <div class="h-48 overflow-hidden relative group">
+                        <img src="${student.image}" alt="${student.projectTitle}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-white/90 backdrop-blur text-[10px] font-bold uppercase rounded-full shadow-sm">
+                                ${student.category}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold mb-1 text-slate-800">${student.name}</h3>
+                        <p class="text-slate-500 text-sm mb-6">${student.projectTitle}</p>
+                        
+                        <div class="mt-auto flex items-center justify-between">
+                            <a href="https://${student.githubUser}.github.io/proiect" target="_blank" 
+                                class="flex items-center text-blue-600 font-semibold text-sm hover:underline">
+                                Vezi Site <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                            </a>
+                            <div class="flex -space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center">
+                                    <i class="fa-brands fa-github text-slate-600 text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
         }
+
+        // Event listener pentru căutare
+        searchInput.addEventListener('input', (e) => {
+            renderProjects(e.target.value);
+        });
+
+        // Inițializare
+        window.onload = () => renderProjects();
     </script>
 </body>
 </html>
-
-```
