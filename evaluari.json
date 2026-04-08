@@ -1,8 +1,8 @@
 [
   {
     "id": "eval-001",
-    "projectId": "ion-popescu",
-    "evaluatorName": "Maria Rusu",
+    "projectId": "valeria-avadani",
+    "evaluatorName": "Ion Ion",
     "evaluatorClass": "XI-A",
     "visitedSite": "Da",
     "relevanta": 5,
@@ -22,7 +22,7 @@
   },
   {
     "id": "eval-002",
-    "projectId": "ion-popescu",
+    "projectId": "valeria-avadani",
     "evaluatorName": "Vlad Ceban",
     "evaluatorClass": "XI-B",
     "visitedSite": "Da",
@@ -43,7 +43,7 @@
   },
   {
     "id": "eval-003",
-    "projectId": "ana-maria",
+    "projectId": "valeria-avadani",
     "evaluatorName": "Irina Buga",
     "evaluatorClass": "XI-A",
     "visitedSite": "Da",
@@ -64,7 +64,7 @@
   },
   {
     "id": "eval-004",
-    "projectId": "ana-maria",
+    "projectId": "valeria-avadani",
     "evaluatorName": "Sergiu Muntean",
     "evaluatorClass": "XI-C",
     "visitedSite": "Da",
