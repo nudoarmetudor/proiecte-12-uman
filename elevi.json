@@ -92,10 +92,10 @@
     "categorie": "demo"
   },
   {
-“id”:”daniel-evelina”, 
-“nume”:”Dodon Daniel”,
-“url”: “https://dodonn786.github.io/BMWMotors/#strategie”,
-“categoria”:”Instructaj”
+"id":"daniel-evelina", 
+"nume":"Dodon Daniel",
+"url": "https://dodonn786.github.io/BMWMotors/#strategie",
+"categoria":"Instructaj"
 },
 {
 "id":"peev-nasoila-vadanescu",
@@ -104,16 +104,16 @@
 "categorie": "browser game"
 },
 {
-   “id”:”vition-fortu”,
-   “nume”:”Valeria Vition, Forțu Amelia”,
-   “url”:”https://valericarica.github.io/Find-the-landforms/”,
-   “categoria”:”browser game”
+   "id":"vition-fortu",
+   "nume":"Valeria Vition, Forțu Amelia",
+   "url":"https://valericarica.github.io/Find-the-landforms/",
+   "categoria":"browser game"
 },
 {
-   “id”:”nelea-orlenco”,
-   “nume”:”Nelea Orlenco”,
-   “url”:”https://neleaturcanu8-byte.github.io/Nelly/”,
-   “categoria”:”CV”
+   "id":"nelea-orlenco",
+   "nume":"Nelea Orlenco",
+   "url":"https://neleaturcanu8-byte.github.io/Nelly/",
+   "categoria":"CV"
 }
 ]
 
