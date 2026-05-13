@@ -1,27 +1,9 @@
 [
   {
-    "id": "profir-adrian",
-    "nume": "Adrian Profir",
-    "url": "",
-    "categorie": "demo"
-  },
-  {
-    "id": "cupcic-alex",
-    "nume": "Alex Cupcic",
-    "url": "",
-    "categorie": "demo"
-  },
-  {
     "id": "alexandra-orlovschi",
     "nume": "Alexandra Orlovschi",
     "url": "https://alexandeaorlovschi-ux.github.io/Site-informatica/",
     "categorie": "Curs"
-  },
-  {
-    "id": "moisei-andrei",
-    "nume": "Andrei Moisei",
-    "url": "https://moisei2007andrei-cmyk.github.io/Andrei-Moise/",
-    "categorie": "CV"
   },
   {
     "id": "andrei-spataru",
@@ -30,22 +12,34 @@
     "categorie": "Sport"
   },
   {
-    "id": "banari-beniamin",
-    "nume": "Beniamin Banari",
-    "url": "",
-    "categorie": "demo"
+    "id": "avadanii-valeria",
+    "nume": "Avădăni Valeria",
+    "url": "https://danielaavadani0-coder.github.io/Valyboo/",
+    "categorie": "CV"
   },
   {
-    "id": "cebotari-ciprian",
-    "nume": "Ciprian Cebotari",
-    "url": "",
-    "categorie": "demo"
+    "id": "balaban-inna",
+    "nume": "Balaban Inna",
+    "url": "https://innabalaban007-gif.github.io/Inna/",
+    "categorie": "CV"
   },
   {
-    "id": "jimbei-damian",
-    "nume": "Damian Jîmbei",
-    "url": "",
-    "categorie": "demo"
+    "id": "bogdan-bodaci",
+    "nume": "Bogdan Bodaci",
+    "url": "https://akicide.github.io/CV-builder/",
+    "categorie": "CV"
+  },
+  {
+    "id": "capatana-magdalena",
+    "nume": "Căpățână Magdalena",
+    "url": "https://magdalena60.github.io/C-p-ina-Maria-Magdalena-/",
+    "categorie": "Beauty & Health"
+  },
+  {
+    "id": "ceban-pantelimon",
+    "nume": "Ceban Pantelimon",
+    "url": "https://icloudceban-tech.github.io/Panchea/",
+    "categorie": "CV"
   },
   {
     "id": "daniel-evelina",
@@ -60,27 +54,9 @@
     "categorie": "CV"
   },
   {
-    "id": "balaban-inna",
-    "nume": "Inna Balaban",
-    "url": "https://innabalaban007-gif.github.io/Inna/",
-    "categorie": "CV"
-  },
-  {
-    "id": "spinu-laurentiu",
-    "nume": "Laurențiu Spînu",
-    "url": "https://spinulaurentiu777.github.io/Laur/",
-    "categorie": "CV"
-  },
-  {
-    "id": "obada-liuba",
-    "nume": "Liuba Obadă",
-    "url": "",
-    "categorie": "demo"
-  },
-  {
-    "id": "capatana-magdalena",
-    "nume": "Magdalena Căpățână",
-    "url": "https://magdalena60.github.io/C-p-ina-Maria-Magdalena-/",
+    "id": "hantea-victoria",
+    "nume": "Hantea Victoria",
+    "url": "https://victoriahantea100-code.github.io/Victoria-Hantea-/#proceduri",
     "categorie": "Beauty & Health"
   },
   {
@@ -90,21 +66,21 @@
     "categorie": "CV"
   },
   {
-    "id": "nelea-orlenco",
-    "nume": "Nelea Orlenco",
-    "url": "https://neleaturcanu8-byte.github.io/Nelly/",
+    "id": "moisei-andrei",
+    "nume": "Moisei Andrei",
+    "url": "https://moisei2007andrei-cmyk.github.io/Andrei-Moise/",
     "categorie": "CV"
   },
   {
-    "id": "nichita-mihalachi",
-    "nume": "Nichita Mihalachi",
-    "url": "",
-    "categorie": "demo"
+    "id": "odajiu-felicia",
+    "nume": "Odajiu Felicia",
+    "url": "https://odajiufelicia21-png.github.io/Vivastar/",
+    "categorie": "CV"
   },
   {
-    "id": "ceban-pantelimon",
-    "nume": "Pantelimon Ceban",
-    "url": "https://icloudceban-tech.github.io/Panchea/",
+    "id": "orlenco-nelea",
+    "nume": "Orlenco Nelea",
+    "url": "https://neleaturcanu8-byte.github.io/Nelly/",
     "categorie": "CV"
   },
   {
@@ -114,27 +90,15 @@
     "categorie": "Browser Game"
   },
   {
-    "id": "board-tudor",
-    "nume": "Tudor LAPP",
-    "url": "https://nudoarmetudor.github.io/proiecte-html-marinciuc/",
-    "categorie": "BOARD"
-  },
-  {
-    "id": "valeria-avadani",
-    "nume": "Valeria Avădăni",
-    "url": "https://danielaavadani0-coder.github.io/Valyboo/",
+    "id": "spinu-laurentiu",
+    "nume": "Spînu Laurențiu",
+    "url": "https://spinulaurentiu777.github.io/Laur/",
     "categorie": "CV"
   },
   {
     "id": "vition-fortu",
-    "nume": "Valeria Vition, Forțu Amelia",
+    "nume": "Vition Valeria, Forțu Amelia",
     "url": "https://valericarica.github.io/Find-the-landforms/",
     "categorie": "Browser Game"
-  },
-  {
-    "id": "victoria-hantea",
-    "nume": "Victoria Hantea",
-    "url": "https://victoriahantea100-code.github.io/Victoria-Hantea-/#proceduri",
-    "categorie": "Beauty & Health"
   }
 ]
