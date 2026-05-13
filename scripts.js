@@ -370,6 +370,7 @@ function sanitizeRemoteComments(comments = []) {
   return comments.map((item, index) => ({
     evaluatorName: String(item.evaluatorName || `Evaluator ${index + 1}`).trim(),
     evaluatorClass: String(item.evaluatorClass || '').trim(),
+    visitedSite: String(item.visitedSite || '').trim(),
     submittedAt: item.submittedAt || '',
     strengthComment: String(item.strengthComment || '').trim(),
     improvementComment: String(item.improvementComment || '').trim(),
