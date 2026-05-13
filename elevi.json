@@ -114,6 +114,12 @@
     "categorie": "Browser Game"
   },
   {
+    "id": "board-tudor",
+    "nume": "Tudor LAPP",
+    "url": "https://nudoarmetudor.github.io/proiecte-html-marinciuc/",
+    "categorie": "BOARD"
+  },
+  {
     "id": "valeria-avadani",
     "nume": "Valeria Avădăni",
     "url": "https://danielaavadani0-coder.github.io/Valyboo/",
