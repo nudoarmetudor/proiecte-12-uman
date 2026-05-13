@@ -1,188 +1,632 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
+/* =========================================================
+   Global design tokens
+   ========================================================= */
+
 :root {
---bg: #f8fafc;
---card: #ffffff;
---text: #0f172a;
---muted: #64748b;
---border: #e2e8f0;
---accent: #2563eb;
---accent-2: #7c3aed;
---success: #059669;
---warning: #d97706;
---danger: #dc2626;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --accent-soft: #eff6ff;
+
+  --accent-2: #7c3aed;
+
+  --success: #059669;
+  --success-soft: #ecfdf5;
+
+  --warning: #d97706;
+  --warning-soft: #fffbeb;
+
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
+
+  --shadow-card: 0 14px 30px -18px rgba(15, 23, 42, 0.28);
+  --shadow-card-hover: 0 24px 44px -22px rgba(15, 23, 42, 0.34);
+
+  --radius-card: 1.65rem;
+  --radius-inner: 1.1rem;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-font-family: 'Plus Jakarta Sans', sans-serif;
-background: radial-gradient(circle at top, #eff6ff 0%, #f8fafc 35%, #f8fafc 100%);
-color: var(--text);
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: radial-gradient(circle at top, #eff6ff 0%, #f8fafc 34%, #f8fafc 100%);
+  color: var(--text);
+  min-height: 100vh;
 }
 
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================================
+   Navigation
+   ========================================================= */
+
 .glass-nav {
-background: rgba(255,255,255,0.82);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .gradient-text {
-background: linear-gradient(90deg, var(--accent), var(--accent-2));
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+#statsCounter {
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   Category chips
+   ========================================================= */
+
+.chip {
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: #334155;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.chip:hover,
+.chip.active {
+  background: var(--accent-soft);
+  border-color: #93c5fd;
+  color: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   Project cards
+   ========================================================= */
+
 .project-card {
-transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  min-width: 0;
+  border-radius: var(--radius-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: var(--shadow-card);
 }
 
 .project-card:hover {
-transform: translateY(-6px);
-box-shadow: 0 20px 30px -12px rgba(15, 23, 42, 0.14);
-border-color: #cbd5e1;
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: #cbd5e1;
 }
 
-.chip {
-border: 1px solid var(--border);
-background: #fff;
-color: #334155;
-transition: all .2s ease;
+.project-card h3 {
+  word-break: break-word;
+  hyphens: auto;
 }
 
-.chip:hover, .chip.active {
-background: #eff6ff;
-border-color: #93c5fd;
-color: #1d4ed8;
+.project-card p,
+.project-card span,
+.project-card div,
+.project-card a,
+.project-card button {
+  min-width: 0;
 }
 
-.skeleton {
-background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
-background-size: 200% 100%;
-animation: loading 1.5s infinite;
+.project-card p span {
+  overflow-wrap: anywhere;
 }
 
-@keyframes loading {
-to { background-position: -200% 0; }
+.project-card img {
+  filter: saturate(1.02) contrast(1.02);
 }
 
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(14px); }
-to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-animation: fadeIn .35s ease forwards;
-}
-
-.modal-overlay {
-position: fixed;
-inset: 0;
-background: rgba(15, 23, 42, 0.6);
-backdrop-filter: blur(4px);
--webkit-backdrop-filter: blur(4px);
-z-index: 60;
-display: none;
-align-items: center;
-justify-content: center;
-padding: 1rem;
-}
-
-.modal-overlay.show { display: flex; }
-
-.modal-panel {
-width: min(980px, 100%);
-max-height: 92vh;
-overflow: auto;
-background: white;
-border: 1px solid #e2e8f0;
-border-radius: 1.5rem;
-box-shadow: 0 25px 60px -20px rgba(15, 23, 42, 0.4);
-}
-
-.likert-row {
-display: grid;
-grid-template-columns: minmax(0, 1fr) repeat(5, minmax(42px, 56px));
-gap: 0.5rem;
-align-items: center;
-}
-
-.likert-cell {
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.likert-cell input[type="radio"] {
-width: 1.05rem;
-height: 1.05rem;
-accent-color: #2563eb;
-cursor: pointer;
-}
+/* =========================================================
+   Score pill
+   ========================================================= */
 
 .score-pill {
-display: inline-flex;
-align-items: center;
-gap: 0.4rem;
-padding: 0.4rem 0.75rem;
-border-radius: 999px;
-font-size: 0.75rem;
-font-weight: 700;
-border: 1px solid #dbeafe;
-background: #eff6ff;
-color: #1d4ed8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  max-width: 100%;
+  padding: 0.48rem 0.82rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  line-height: 1.15;
+  font-weight: 800;
+  white-space: nowrap;
 }
 
+/* =========================================================
+   Metric cards
+   IMPORTANT:
+   .metric-bar is used in scripts.js as a metric tile,
+   not as an 8px progress bar.
+   ========================================================= */
+
 .metric-bar {
-width: 100%;
-height: 8px;
-border-radius: 999px;
-background: #e2e8f0;
-overflow: hidden;
+  width: 100%;
+  min-height: 68px;
+  height: auto;
+  border-radius: 1rem;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.15rem;
 }
 
 .metric-bar > span {
-display: block;
-height: 100%;
-background: linear-gradient(90deg, #2563eb, #7c3aed);
-border-radius: 999px;
+  display: none;
 }
 
-.toast {
-position: fixed;
-right: 1rem;
-bottom: 1rem;
-z-index: 80;
-background: #0f172a;
-color: white;
-padding: 0.9rem 1rem;
-border-radius: 1rem;
-box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.45);
-display: none;
-max-width: 420px;
+.metric-bar div:first-child {
+  color: #94a3b8;
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  white-space: normal;
 }
 
-.toast.show { display: block; animation: fadeIn .25s ease; }
-
-.line-clamp-3 {
-display: -webkit-box;
--webkit-line-clamp: 3;
--webkit-box-orient: vertical;
-overflow: hidden;
+.metric-bar div:last-child {
+  color: #0f172a;
+  font-size: 1.12rem;
+  line-height: 1.1;
+  font-weight: 900;
 }
 
-@media (max-width: 900px) {
+/* =========================================================
+   Aggregated comment box
+   ========================================================= */
+
+.project-card [data-comments-id] {
+  flex-shrink: 0;
+  white-space: normal;
+  text-align: right;
+  line-height: 1.15;
+}
+
+.project-card [data-comments-id] i {
+  flex-shrink: 0;
+}
+
+.project-card .line-clamp-3 {
+  color: #334155;
+}
+
+/* =========================================================
+   Action buttons inside cards
+   ========================================================= */
+
+.project-card a,
+.project-card button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card a:hover,
+.project-card button:hover {
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   Skeleton loading
+   ========================================================= */
+
+.skeleton {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s ease forwards;
+}
+
+/* =========================================================
+   Modal windows
+   ========================================================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.62);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal-panel {
+  width: min(980px, 100%);
+  max-height: 92vh;
+  overflow: auto;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 60px -20px rgba(15, 23, 42, 0.42);
+}
+
+/* =========================================================
+   Evaluation Likert rows
+   ========================================================= */
+
 .likert-row {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-    padding: 1rem 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
+  background: #f8fafc;
 }
 
 .likert-options {
+  display: grid;
+  grid-template-columns: repeat(5, 2.5rem);
+  gap: 0.45rem;
+}
+
+.likert-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.likert-cell input[type="radio"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* =========================================================
+   Toast
+   ========================================================= */
+
+.toast {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 80;
+  display: none;
+  max-width: 420px;
+  padding: 0.9rem 1rem;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.45);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.toast.show {
+  display: block;
+  animation: fadeIn 0.25s ease;
+}
+
+/* =========================================================
+   Text utilities
+   ========================================================= */
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   Desktop card corrections
+   3-column layout needs more breathing room.
+   ========================================================= */
+
+@media (min-width: 1280px) {
+  #projectsGrid {
+    gap: 1.5rem !important;
+  }
+
+  .project-card > div:nth-child(2) {
+    padding: 1.25rem !important;
+    gap: 1.05rem !important;
+  }
+
+  .project-card .grid.grid-cols-3 {
+    gap: 0.75rem !important;
+  }
+
+  .project-card .metric-bar {
+    padding: 0.75rem 0.85rem !important;
+  }
+
+  .project-card .metric-bar div:first-child {
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+  }
+
+  .project-card .metric-bar div:last-child {
+    font-size: 1.05rem;
+  }
+
+  .project-card .mt-auto.flex {
+    gap: 0.75rem !important;
+  }
+
+  .project-card .mt-auto.flex a,
+  .project-card .mt-auto.flex button {
+    min-height: 58px;
+    padding: 0.85rem 0.8rem !important;
+    font-size: 0.92rem;
+    line-height: 1.22;
+    border-radius: 1rem !important;
+  }
+}
+
+/* =========================================================
+   Medium screens
+   Prevent cards from becoming too crowded.
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .project-card > div:nth-child(2) {
+    padding: 1.15rem !important;
+    gap: 1rem !important;
+  }
+
+  .project-card .grid.grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+  }
+
+  .project-card .metric-bar {
+    min-height: auto;
+    padding: 0.85rem 1rem !important;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .project-card .metric-bar div:first-child {
+    margin-bottom: 0 !important;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .project-card .metric-bar div:last-child {
+    font-size: 1.08rem;
+  }
+
+  .project-card .mt-auto.flex a,
+  .project-card .mt-auto.flex button {
+    min-height: 60px;
+    font-size: 0.92rem;
+    line-height: 1.22;
+  }
+}
+
+/* =========================================================
+   Tablets and small screens
+   ========================================================= */
+
+@media (max-width: 900px) {
+  #statsCounter {
+    white-space: normal;
+    line-height: 1.35;
+  }
+
+  .likert-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .likert-options {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 0.5rem;
+  }
 }
+
+/* =========================================================
+   Mobile cards
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .modal-overlay {
+    padding: 0.75rem;
+  }
+
+  .modal-panel {
+    border-radius: 1.25rem;
+    max-height: 94vh;
+  }
+
+  .project-card {
+    border-radius: 1.45rem;
+  }
+
+  .project-card > div:nth-child(2) {
+    padding: 1.1rem !important;
+    gap: 1rem !important;
+  }
+
+  .project-card h3 {
+    font-size: 1.2rem !important;
+    line-height: 1.2;
+  }
+
+  .score-pill {
+    font-size: 0.76rem;
+    padding: 0.52rem 0.78rem;
+  }
+
+  .project-card .text-right .text-2xl {
+    font-size: 1.65rem;
+    line-height: 1;
+  }
+
+  .project-card .grid.grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+  }
+
+  .project-card .metric-bar {
+    min-height: auto;
+    padding: 0.82rem 0.95rem !important;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .project-card .metric-bar div:first-child {
+    margin-bottom: 0 !important;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .project-card .metric-bar div:last-child {
+    font-size: 1.05rem;
+  }
+
+  .project-card .bg-slate-50.border.border-slate-200.rounded-2xl {
+    padding: 1rem !important;
+    overflow: hidden;
+  }
+
+  .project-card .bg-slate-50.border.border-slate-200.rounded-2xl > .flex {
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+
+  .project-card [data-comments-id] {
+    max-width: 102px;
+    font-size: 0.72rem;
+    text-align: right;
+  }
+
+  .project-card .line-clamp-3 {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .project-card .mt-auto.flex {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem !important;
+  }
+
+  .project-card .mt-auto.flex a,
+  .project-card .mt-auto.flex button {
+    min-height: 62px;
+    padding: 0.9rem 0.75rem !important;
+    border-radius: 1rem !important;
+    font-size: 0.9rem;
+    line-height: 1.22;
+  }
+}
+
+/* =========================================================
+   Very small screens
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .project-card > div:nth-child(2) {
+    padding: 1rem !important;
+  }
+
+  .project-card .flex.items-center.justify-between.gap-3 {
+    gap: 0.65rem !important;
+  }
+
+  .score-pill {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .project-card .bg-slate-50.border.border-slate-200.rounded-2xl > .flex {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .project-card [data-comments-id] {
+    max-width: none;
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .project-card .mt-auto.flex {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-card .mt-auto.flex a,
+  .project-card .mt-auto.flex button {
+    min-height: 56px;
+  }
+
+  .toast {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    max-width: none;
+  }
 }
