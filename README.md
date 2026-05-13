@@ -67,7 +67,6 @@ Fiecare elev va crea un website propriu, publicabil online, folosind HTML, CSS �
 
 Website-ul poate avea una dintre următoarele forme:
 
-- pagină de prezentare personală;
 - website tematic;
 - website de informare;
 - website educațional;
@@ -143,7 +142,6 @@ Elevul alege o temă pentru website.
 
 Exemple de teme:
 
-- CV digital;
 - portofoliu personal;
 - hobby personal;
 - sport preferat;
