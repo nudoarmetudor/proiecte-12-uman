@@ -1,11 +1,11 @@
 import fs from 'node:fs/promises';
 
-const SHEET_CSV_URL = process.env.SHEET_CSV_URL;
+const DEFAULT_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSIwyVCMRw80uosx5ua6JV8ZP3gwwmynh8dYIcAgC6cQOSRHrYKdqUS-CNR8EFfW3g9cD7UdEgYN1ga/pub?gid=897180671&single=true&output=csv';
 
-if (!SHEET_CSV_URL) {
-  console.error('https://docs.google.com/spreadsheets/d/e/2PACX-1vSIwyVCMRw80uosx5ua6JV8ZP3gwwmynh8dYIcAgC6cQOSRHrYKdqUS-CNR8EFfW3g9cD7UdEgYN1ga/pub?gid=897180671&single=true&output=csv');
-  process.exit(1);
-}
+const SHEET_CSV_URL = process.env.SHEET_CSV_URL || DEFAULT_SHEET_CSV_URL;
+
+console.log('Using CSV URL:');
+console.log(SHEET_CSV_URL);
 
 function parseCsvLine(line) {
   const result = [];
