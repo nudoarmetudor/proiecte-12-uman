@@ -1,233 +1,594 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Proiecte Web | Evaluare peer-to-peer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="./styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Portal Proiecte Web | Evaluare peer-to-peer</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
-    <nav class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
-            <div class="flex items-center gap-3 min-w-0">
-                <div class="bg-blue-600 p-2 rounded-xl shadow-lg shadow-blue-500/20 shrink-0">
-                    <i class="fa-solid fa-code text-white text-xl"></i>
-                </div>
-                <div class="min-w-0">
-                    <div class="text-lg md:text-xl font-extrabold tracking-tight truncate">Portal <span class="gradient-text">Proiecte Web</span></div>
-                    <p class="text-[10px] md:text-xs text-slate-500 uppercase tracking-[0.2em] font-bold">Coordonator: Tudor Lapp</p>
-                </div>
-            </div>
-            <div id="statsCounter" class="hidden md:flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100 px-4 py-2 rounded-full border border-slate-200">
-                <i class="fa-solid fa-chart-simple text-blue-600"></i>
-                <span>Se încarcă...</span>
-            </div>
-        </div>
-    </nav>
 
-    <header class="pt-32 pb-14 border-b border-slate-100 bg-white/70">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-5">
-                Portal de centralizare și <br class="hidden md:block">
-                <span class="gradient-text">evaluare peer-to-peer</span>
-            </h1>
-            <p id="heroDescription" class="text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">
-                Elevii pot explora proiectele colegilor, pot completa un chestionar de evaluare și pot urmări indicatorii agregați pentru fiecare produs web.
-            </p>
+  <!-- Fixed top navigation -->
+  <nav class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between gap-4">
 
-            <div class="mt-10 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-4 max-w-5xl mx-auto items-center">
-                <div class="relative group">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors"></i>
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Caută după numele elevului, categorie, URL sau cuvinte-cheie..."
-                        class="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all outline-none text-slate-700 shadow-sm"
-                    >
-                </div>
-                <button id="resetFiltersBtn" class="px-5 py-4 rounded-2xl bg-slate-900 text-white font-bold hover:bg-blue-600 transition-colors">
-                    Resetează filtrele
-                </button>
-            </div>
-
-            <div id="categoryFilters" class="mt-6 flex flex-wrap justify-center gap-3"></div>
-
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto text-left">
-                <div class="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm">
-                    <div class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 mb-2">Proces</div>
-                    <div class="text-sm text-slate-700 leading-relaxed">Accesare proiect, explorare, revenire în portal și completare formular cu criterii Likert și comentarii formative.</div>
-                </div>
-                <div class="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm">
-                    <div class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 mb-2">Scor</div>
-                    <div class="text-sm text-slate-700 leading-relaxed">Scor general ponderat din 5, medii pe criterii și clasament al celor mai bine evaluate proiecte.</div>
-                </div>
-                <div class="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm">
-                    <div class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 mb-2">Feedback</div>
-                    <div class="text-sm text-slate-700 leading-relaxed">Comentarii privind punctele forte, aspectele de îmbunătățit, răspunsul la nevoile publicului-țintă și feedback general.</div>
-                </div>
-                <div class="bg-amber-50 rounded-3xl border border-amber-200 p-5 shadow-sm">
-                    <div class="text-xs font-bold uppercase tracking-[0.16em] text-amber-700 mb-2">Notă tehnică</div>
-                    <div class="text-sm text-amber-800 leading-relaxed">Portalul rulează pe GitHub Pages, iar evaluările sunt trimise către Google Sheets prin Apps Script. Dashboard-ul citește apoi sintezele agregate înapoi în interfața acestui portal.</div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div id="errorBox" class="hidden max-w-3xl mx-auto mb-12 p-6 bg-red-50 border border-red-200 rounded-3xl text-center">
-            <i class="fa-solid fa-circle-exclamation text-red-500 text-3xl mb-4"></i>
-            <h2 class="text-red-800 font-bold text-lg mb-2">Eroare la încărcarea datelor</h2>
-            <p class="text-red-700 text-sm leading-relaxed">
-                Fișierul <code class="bg-red-100 px-2 py-1 rounded">elevi.json</code> sau endpointul Apps Script nu au putut fi citite. Verifică URL-ul Web App-ului și publicarea lui pentru acces public.
-                Verifică dacă ambele există în același folder cu <code class="bg-red-100 px-2 py-1 rounded">index.html</code> și dacă JSON-ul este valid.
-            </p>
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-200">
+          <i class="fa-solid fa-code text-lg"></i>
         </div>
 
-        <div id="emptyState" class="hidden max-w-2xl mx-auto mb-10 p-8 bg-white border border-slate-200 rounded-3xl text-center shadow-sm">
-            <i class="fa-regular fa-folder-open text-4xl text-slate-400 mb-4"></i>
-            <h2 class="text-xl font-bold text-slate-800 mb-2">Niciun rezultat</h2>
-            <p class="text-slate-600">Nu există proiecte care să corespundă filtrelor curente.</p>
-        </div>
-
-        <section id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            <div class="skeleton h-[35rem] rounded-3xl opacity-60"></div>
-            <div class="skeleton h-[35rem] rounded-3xl opacity-60"></div>
-            <div class="skeleton h-[35rem] rounded-3xl opacity-60"></div>
-            <div class="skeleton h-[35rem] rounded-3xl opacity-60"></div>
-        </section>
-    </main>
-
-    <footer class="bg-white border-t border-slate-200 py-12 mt-8">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
-            <div class="flex space-x-6 mb-6 text-slate-300 text-2xl">
-                <i class="fa-brands fa-html5"></i>
-                <i class="fa-brands fa-css3-alt"></i>
-                <i class="fa-brands fa-js"></i>
-                <i class="fa-brands fa-github"></i>
-            </div>
-            <p class="text-slate-700 font-medium">Portal pentru prezentarea și evaluarea proiectelor realizate de elevi</p>
-            <p class="text-slate-500 text-sm mt-2">GitHub Pages • HTML • CSS • JavaScript • Peer review</p>
-        </div>
-    </footer>
-
-    <div id="evaluationModal" class="modal-overlay" aria-hidden="true">
-        <div class="modal-panel">
-            <div class="p-6 md:p-8 border-b border-slate-200 sticky top-0 bg-white z-10 rounded-t-3xl">
-                <div class="flex items-start justify-between gap-4">
-                    <div>
-                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">Chestionar de evaluare peer-to-peer</p>
-                        <h2 id="modalTitle" class="text-2xl font-extrabold text-slate-900">Evaluare proiect</h2>
-                        <p id="modalSubtitle" class="text-slate-600 mt-2 max-w-3xl">Completează evaluarea după ce ai explorat proiectul colegului.</p>
-                    </div>
-                    <button id="closeModalBtn" type="button" class="w-11 h-11 rounded-2xl border border-slate-200 hover:bg-slate-50 text-slate-700">
-                        <i class="fa-solid fa-xmark text-lg"></i>
-                    </button>
-                </div>
-            </div>
-
-            <form id="evaluationForm" class="p-6 md:p-8 space-y-8">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2" for="evaluatorName">Numele evaluatorului</label>
-                        <input id="evaluatorName" name="evaluatorName" type="text" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Ex.: Andrei Ionescu">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2" for="evaluatorClass">Clasa / grupa</label>
-                        <input id="evaluatorClass" name="evaluatorClass" type="text" class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Ex.: XI-B">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2" for="visitedSite">Ai explorat site-ul?</label>
-                        <select id="visitedSite" name="visitedSite" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none">
-                            <option value="">Selectează</option>
-                            <option value="Da">Da, am explorat proiectul</option>
-                            <option value="Parțial">Parțial</option>
-                        </select>
-                    </div>
-                </div>
-
-                <section class="bg-slate-50 border border-slate-200 rounded-3xl p-5 md:p-6">
-                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-                        <div>
-                            <h3 class="text-lg font-extrabold text-slate-900">Criterii de evaluare</h3>
-                            <p class="text-sm text-slate-600 mt-1">Scară Likert: 1 = foarte slab, 2 = slab, 3 = acceptabil, 4 = bun, 5 = foarte bun.</p>
-                        </div>
-                        <div class="grid grid-cols-5 gap-2 text-center text-xs font-bold uppercase tracking-[0.16em] text-slate-500 min-w-[280px]">
-                            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-                        </div>
-                    </div>
-                    <div id="criteriaContainer" class="space-y-5"></div>
-                </section>
-
-                <section class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2" for="strengthComment">Punctul forte principal</label>
-                        <textarea id="strengthComment" name="strengthComment" rows="4" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Ce ai apreciat cel mai mult la acest proiect?"></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2" for="improvementComment">Ce ar trebui îmbunătățit în primul rând</label>
-                        <textarea id="improvementComment" name="improvementComment" rows="4" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Indică cea mai importantă direcție de îmbunătățire."></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2" for="audienceComment">Cât de bine răspunde site-ul nevoilor publicului-țintă?</label>
-                        <textarea id="audienceComment" name="audienceComment" rows="4" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Explică pe scurt dacă soluția este potrivită pentru publicul vizat."></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2" for="generalComment">Comentariu general pentru autor</label>
-                        <textarea id="generalComment" name="generalComment" rows="4" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" placeholder="Formulează un feedback general constructiv."></textarea>
-                    </div>
-                </section>
-
-                <div class="bg-blue-50 border border-blue-200 rounded-3xl p-5 text-sm text-blue-900 leading-relaxed">
-                    Evaluarea este trimisă către un Web App Google Apps Script conectat la Google Sheets. După salvare, portalul reîncarcă sintezele agregate pentru a afișa aceleași rezultate tuturor utilizatorilor.
-                </div>
-
-                <div class="flex flex-col sm:flex-row gap-3 justify-end">
-                    <button type="button" id="cancelModalBtn" class="px-5 py-3 rounded-2xl border border-slate-300 text-slate-700 font-bold hover:bg-slate-50">Renunță</button>
-                    <button type="submit" class="px-5 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-blue-600 transition-colors">Trimite evaluarea</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div id="commentsModal" class="modal-overlay" aria-hidden="true">
-      <div class="modal-panel">
-    
-        <div class="p-6 md:p-8 border-b border-slate-200 sticky top-0 bg-white z-10 rounded-t-3xl">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">
-                Comentarii primite
-              </p>
-    
-              <h2 id="commentsModalTitle" class="text-2xl font-extrabold text-slate-900">
-                Comentarii proiect
-              </h2>
-    
-              <p id="commentsModalSubtitle" class="text-slate-600 mt-2 max-w-3xl">
-                Aici sunt afișate comentariile oferite de evaluatori pentru acest proiect.
-              </p>
-            </div>
-    
-            <button
-              id="closeCommentsModalBtn"
-              type="button"
-              class="w-11 h-11 rounded-2xl border border-slate-200 hover:bg-slate-50 text-slate-700"
-            >
-              <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
+        <div>
+          <div class="text-lg md:text-xl font-extrabold text-slate-900 leading-tight">
+            Portal <span class="gradient-text">Proiecte Web</span>
           </div>
+          <p class="text-xs md:text-sm text-slate-500">
+            Coordonator: Tudor Lapp
+          </p>
         </div>
-    
-        <div id="commentsModalBody" class="p-6 md:p-8 space-y-5">
-          <!-- Comentariile vor fi încărcate aici prin JavaScript -->
-        </div>
-    
       </div>
-    </div>
-    <div id="toast" class="toast"></div>
 
-    
-    <script src="./scripts.js"></script>
+      <div
+        id="statsCounter"
+        class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-sm font-bold text-slate-700 shadow-sm"
+      >
+        <i class="fa-solid fa-chart-simple text-blue-600"></i>
+        <span>Se încarcă...</span>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- Hero section -->
+  <header class="pt-32 pb-12 px-4 md:px-6">
+    <div class="max-w-6xl mx-auto text-center">
+
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-700 font-bold text-xs uppercase tracking-[0.18em] mb-6">
+        <i class="fa-solid fa-layer-group"></i>
+        Proiecte HTML
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-black text-slate-900 leading-tight mb-6">
+        Portal de centralizare și
+        <span class="gradient-text block">evaluare peer-to-peer</span>
+      </h1>
+
+      <p
+        id="heroDescription"
+        class="max-w-3xl mx-auto text-lg md:text-xl text-slate-600 leading-relaxed mb-8"
+      >
+        Elevii pot explora proiectele colegilor, pot completa un chestionar de evaluare și pot urmări indicatorii agregați pentru fiecare produs web.
+      </p>
+
+
+      <!-- Search and reset -->
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3 mb-5">
+
+        <div class="relative group">
+          <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600"></i>
+
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Caută după numele elevului, categorie, URL sau cuvinte-cheie din feedback..."
+            class="w-full pl-13 pr-5 py-4 rounded-2xl border border-slate-200 bg-white shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 text-slate-800"
+          >
+        </div>
+
+        <button
+          id="resetFiltersBtn"
+          type="button"
+          class="px-6 py-4 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold shadow-sm"
+        >
+          <i class="fa-solid fa-rotate-left mr-2"></i>
+          Resetează filtrele
+        </button>
+
+      </div>
+
+
+      <!-- Dynamic category filters -->
+      <div
+        id="categoryFilters"
+        class="flex flex-wrap justify-center gap-2 mb-10"
+      >
+        <!-- Category chips are generated in scripts.js -->
+      </div>
+
+
+      <!-- Informational cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+
+        <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+          <div class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-route"></i>
+          </div>
+
+          <h2 class="text-lg font-extrabold text-slate-900 mb-2">
+            Proces
+          </h2>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Accesare proiect, explorare, revenire în portal și completare formular cu criterii Likert și comentarii formative.
+          </p>
+        </div>
+
+
+        <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+
+          <h2 class="text-lg font-extrabold text-slate-900 mb-2">
+            Scor
+          </h2>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Scor general ponderat din 5, medii pe criterii și clasament al celor mai bine evaluate proiecte.
+          </p>
+        </div>
+
+
+        <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+          <div class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-comments"></i>
+          </div>
+
+          <h2 class="text-lg font-extrabold text-slate-900 mb-2">
+            Feedback
+          </h2>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Comentarii privind punctele forte, aspectele de îmbunătățit, răspunsul la nevoile publicului-țintă și feedback general.
+          </p>
+        </div>
+
+
+        <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+          <div class="w-10 h-10 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-database"></i>
+          </div>
+
+          <h2 class="text-lg font-extrabold text-slate-900 mb-2">
+            Notă tehnică
+          </h2>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Portalul rulează pe GitHub Pages, iar evaluările sunt trimise către Google Sheets prin Apps Script. Dashboard-ul citește apoi sintezele agregate înapoi în interfața acestui portal.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- Main content -->
+  <main class="px-4 md:px-6 pb-16">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Error state -->
+      <div
+        id="errorBox"
+        class="hidden bg-red-50 border border-red-200 rounded-3xl p-8 text-center mb-8"
+      >
+        <div class="w-14 h-14 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center mx-auto mb-4">
+          <i class="fa-solid fa-circle-exclamation text-2xl"></i>
+        </div>
+
+        <h2 class="text-2xl font-extrabold text-red-900 mb-3">
+          Eroare la încărcarea datelor
+        </h2>
+
+        <p class="max-w-3xl mx-auto text-red-700 leading-relaxed">
+          Fișierul <code>elevi.json</code> sau endpointul Apps Script nu au putut fi citite.
+          Verifică URL-ul Web App-ului și publicarea lui pentru acces public.
+          Verifică dacă ambele există în același folder cu <code>index.html</code> și dacă JSON-ul este valid.
+        </p>
+      </div>
+
+
+      <!-- Empty state -->
+      <div
+        id="emptyState"
+        class="hidden bg-white border border-slate-200 rounded-3xl p-10 text-center"
+      >
+        <div class="w-16 h-16 rounded-3xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4">
+          <i class="fa-regular fa-folder-open text-3xl"></i>
+        </div>
+
+        <h2 class="text-2xl font-extrabold text-slate-900 mb-3">
+          Niciun rezultat
+        </h2>
+
+        <p class="text-slate-600">
+          Nu există proiecte care să corespundă filtrelor curente.
+        </p>
+      </div>
+
+
+      <!-- Dynamic project grid -->
+      <section
+        id="projectsGrid"
+        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+      >
+        <!-- Initial skeleton cards -->
+        <div class="skeleton h-96 rounded-3xl"></div>
+        <div class="skeleton h-96 rounded-3xl"></div>
+        <div class="skeleton h-96 rounded-3xl"></div>
+        <div class="skeleton h-96 rounded-3xl"></div>
+        <div class="skeleton h-96 rounded-3xl"></div>
+        <div class="skeleton h-96 rounded-3xl"></div>
+
+        <!-- Project cards are generated in scripts.js -->
+      </section>
+
+    </div>
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="px-4 md:px-6 pb-10">
+    <div class="max-w-7xl mx-auto border-t border-slate-200 pt-8 text-center">
+
+      <div class="flex justify-center gap-4 text-2xl text-slate-400 mb-4">
+        <i class="fa-brands fa-html5"></i>
+        <i class="fa-brands fa-css3-alt"></i>
+        <i class="fa-brands fa-js"></i>
+        <i class="fa-brands fa-github"></i>
+      </div>
+
+      <p class="text-slate-600 font-semibold">
+        Portal pentru prezentarea și evaluarea proiectelor realizate de elevi
+      </p>
+
+      <p class="text-sm text-slate-400 mt-2">
+        GitHub Pages • HTML • CSS • JavaScript • Peer review
+      </p>
+
+    </div>
+  </footer>
+
+
+  <!-- Evaluation modal -->
+  <div
+    id="evaluationModal"
+    class="modal-overlay"
+    aria-hidden="true"
+  >
+    <div class="modal-panel">
+
+      <!-- Evaluation modal header -->
+      <div class="p-6 md:p-8 border-b border-slate-200 sticky top-0 bg-white z-10 rounded-t-3xl">
+        <div class="flex items-start justify-between gap-4">
+
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">
+              Chestionar de evaluare peer-to-peer
+            </p>
+
+            <h2
+              id="modalTitle"
+              class="text-2xl font-extrabold text-slate-900"
+            >
+              Evaluare proiect
+            </h2>
+
+            <p
+              id="modalSubtitle"
+              class="text-slate-600 mt-2 max-w-3xl"
+            >
+              Completează evaluarea după ce ai explorat proiectul colegului.
+            </p>
+          </div>
+
+          <button
+            id="closeModalBtn"
+            type="button"
+            class="w-11 h-11 rounded-2xl border border-slate-200 hover:bg-slate-50 text-slate-700"
+            aria-label="Închide formularul de evaluare"
+          >
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- Evaluation form -->
+      <form
+        id="evaluationForm"
+        class="p-6 md:p-8 space-y-8"
+      >
+
+        <!-- Evaluator metadata -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+          <div>
+            <label
+              for="evaluatorName"
+              class="block text-sm font-bold text-slate-700 mb-2"
+            >
+              Numele evaluatorului
+            </label>
+
+            <input
+              id="evaluatorName"
+              name="evaluatorName"
+              type="text"
+              required
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500"
+            >
+          </div>
+
+
+          <div>
+            <label
+              for="evaluatorClass"
+              class="block text-sm font-bold text-slate-700 mb-2"
+            >
+              Clasa / grupa
+            </label>
+
+            <input
+              id="evaluatorClass"
+              name="evaluatorClass"
+              type="text"
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500"
+            >
+          </div>
+
+
+          <div>
+            <label
+              for="visitedSite"
+              class="block text-sm font-bold text-slate-700 mb-2"
+            >
+              Ai explorat site-ul?
+            </label>
+
+            <select
+              id="visitedSite"
+              name="visitedSite"
+              required
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 bg-white"
+            >
+              <option value="">Selectează</option>
+              <option value="Da">Da, am explorat proiectul</option>
+              <option value="Parțial">Parțial</option>
+            </select>
+          </div>
+
+        </section>
+
+
+        <!-- Criteria section -->
+        <section>
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-4">
+
+            <div>
+              <h3 class="text-xl font-extrabold text-slate-900">
+                Criterii de evaluare
+              </h3>
+
+              <p class="text-sm text-slate-600 mt-1">
+                Scară Likert: 1 = foarte slab, 2 = slab, 3 = acceptabil, 4 = bun, 5 = foarte bun.
+              </p>
+            </div>
+
+            <div class="hidden md:flex items-center gap-3 text-xs font-bold text-slate-500">
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>4</span>
+              <span>5</span>
+            </div>
+
+          </div>
+
+          <div
+            id="criteriaContainer"
+            class="space-y-3"
+          >
+            <!-- Criteria rows are generated in scripts.js -->
+          </div>
+        </section>
+
+
+        <!-- Qualitative feedback -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          <div>
+            <label
+              for="strengthComment"
+              class="block text-sm font-bold text-slate-700 mb-2"
+            >
+              Punctul forte principal
+            </label>
+
+            <textarea
+              id="strengthComment"
+              name="strengthComment"
+              required
+              rows="4"
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500"
+            ></textarea>
+          </div>
+
+
+          <div>
+            <label
+              for="improvementComment"
+              class="block text-sm font-bold text-slate-700 mb-2"
+            >
+              Ce ar trebui îmbunătățit în primul rând
+            </label>
+
+            <textarea
+              id="improvementComment"
+              name="improvementComment"
+              required
+              rows="4"
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500"
+            ></textarea>
+          </div>
+
+
+          <div>
+            <label
+              for="audienceComment"
+              class="block text-sm font-bold text-slate-700 mb-2"
+            >
+              Cât de bine răspunde site-ul nevoilor publicului-țintă?
+            </label>
+
+            <textarea
+              id="audienceComment"
+              name="audienceComment"
+              required
+              rows="4"
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500"
+            ></textarea>
+          </div>
+
+
+          <div>
+            <label
+              for="generalComment"
+              class="block text-sm font-bold text-slate-700 mb-2"
+            >
+              Comentariu general pentru autor
+            </label>
+
+            <textarea
+              id="generalComment"
+              name="generalComment"
+              required
+              rows="4"
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500"
+            ></textarea>
+          </div>
+
+        </section>
+
+
+        <!-- Technical note -->
+        <div class="bg-blue-50 border border-blue-100 rounded-2xl p-4 text-sm text-blue-800 leading-relaxed">
+          <i class="fa-solid fa-circle-info mr-2"></i>
+          Evaluarea este trimisă către un Web App Google Apps Script conectat la Google Sheets.
+          După salvare, portalul reîncarcă sintezele agregate pentru a afișa aceleași rezultate tuturor utilizatorilor.
+        </div>
+
+
+        <!-- Form actions -->
+        <div class="flex flex-col sm:flex-row justify-end gap-3 pt-2">
+
+          <button
+            id="cancelModalBtn"
+            type="button"
+            class="px-6 py-3 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold"
+          >
+            Renunță
+          </button>
+
+          <button
+            type="submit"
+            class="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-lg shadow-blue-200"
+          >
+            <i class="fa-solid fa-paper-plane mr-2"></i>
+            Trimite evaluarea
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- Comments modal -->
+  <div
+    id="commentsModal"
+    class="modal-overlay"
+    aria-hidden="true"
+  >
+    <div class="modal-panel">
+
+      <!-- Comments modal header -->
+      <div class="p-6 md:p-8 border-b border-slate-200 sticky top-0 bg-white z-10 rounded-t-3xl">
+        <div class="flex items-start justify-between gap-4">
+
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">
+              Comentarii primite
+            </p>
+
+            <h2
+              id="commentsModalTitle"
+              class="text-2xl font-extrabold text-slate-900"
+            >
+              Comentarii proiect
+            </h2>
+
+            <p
+              id="commentsModalSubtitle"
+              class="text-slate-600 mt-2 max-w-3xl"
+            >
+              Aici sunt afișate comentariile oferite de evaluatori pentru acest proiect.
+            </p>
+          </div>
+
+          <button
+            id="closeCommentsModalBtn"
+            type="button"
+            class="w-11 h-11 rounded-2xl border border-slate-200 hover:bg-slate-50 text-slate-700"
+            aria-label="Închide fereastra de comentarii"
+          >
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- Comments body -->
+      <div
+        id="commentsModalBody"
+        class="p-6 md:p-8 space-y-5"
+      >
+        <!-- Individual comments are generated in scripts.js -->
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Toast notification -->
+  <div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <!-- Custom JavaScript -->
+  <script src="./scripts.js"></script>
+
 </body>
 </html>
