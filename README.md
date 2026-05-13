@@ -116,7 +116,7 @@ Elevii pot folosi GenAI pentru:
 - generarea de exemple de conținut;
 - verificarea accesibilității;
 - adaptarea website-ului pentru telefon;
-- înțelegerea unor concepte precum div, section, header, footer, class, id, flexbox, grid.
+- înțelegerea unor concepte precum `div`, `section`, `header`, `footer`, `class`, `id`, `flexbox`, `grid`.
 
 Totuși, AI-ul nu trebuie folosit pentru a înlocui complet munca elevului. Elevul trebuie să înțeleagă, să verifice și să poată explica website-ul creat.
 
@@ -195,7 +195,7 @@ O structură simplă poate include:
 
 Exemplu:
 
-txt
+```txt
 Header
 ├── Titlu website
 ├── Meniu de navigare
@@ -208,7 +208,7 @@ Main
 
 Footer
 └── Autor, clasă, an
-
+````
 
 #### Etapa 4. Crearea website-ului
 
@@ -245,28 +245,28 @@ Pașii generali sunt:
 
 Structura minimă recomandată a proiectului:
 
-txt
+```txt
 website-elev/
 │
 ├── index.html
 ├── style.css
 └── images/
-
+```
 
 sau, pentru proiecte mai simple:
 
-txt
+```txt
 website-elev/
 │
 ├── index.html
 └── style.css
-
+```
 
 Fișierul principal trebuie să se numească:
 
-txt
+```txt
 index.html
-
+```
 
 GitHub Pages îl folosește ca pagină principală a website-ului.
 
@@ -274,19 +274,19 @@ GitHub Pages îl folosește ca pagină principală a website-ului.
 
 După încărcarea fișierelor în repository:
 
-1. Elevul intră în Settings.
-2. Selectează Pages.
-3. Alege branch-ul main.
-4. Selectează folderul /root.
+1. Elevul intră în `Settings`.
+2. Selectează `Pages`.
+3. Alege branch-ul `main`.
+4. Selectează folderul `/root`.
 5. Salvează.
 6. Așteaptă publicarea linkului.
 7. Deschide linkul și verifică dacă website-ul funcționează.
 
 Linkul public va avea, de regulă, forma:
 
-txt
+```txt
 https://username.github.io/nume-repository/
-
+```
 
 #### Etapa 7. Încărcarea linkului pe Padlet
 
@@ -303,13 +303,13 @@ Postarea de pe Padlet trebuie să conțină:
 
 Model de postare:
 
-txt
+```txt
 Nume: Prenume Nume
 Titlul proiectului: Portofoliul meu digital
 Categoria: CV / Portofoliu
 Link: https://username.github.io/proiect/
 Descriere: Website de prezentare personală, realizat în HTML și CSS, cu sprijinul instrumentelor GenAI pentru structurare și design.
-
+```
 
 #### Etapa 8. Verificarea apariției pe platformă
 
@@ -374,22 +374,22 @@ Un feedback calitativ nu înseamnă doar „este frumos” sau „nu îmi place�
 
 Exemple de feedback slab:
 
-txt
+```txt
 E frumos.
 Nu-mi place.
 Bravo.
 Mai lucrează.
-
+```
 
 Exemple de feedback bun:
 
-txt
+```txt
 Website-ul are o structură clară, iar secțiunea de prezentare explică bine scopul proiectului. Ar putea fi îmbunătățită partea de navigare, deoarece unele butoane nu sunt suficient de vizibile.
 
 Designul este atractiv și culorile sunt potrivite pentru tema aleasă. Totuși, pe telefon unele texte sunt prea apropiate, iar spațierea dintre secțiuni ar putea fi mărită.
 
 Informația este utilă pentru publicul-țintă, dar ar fi bine să fie adăugate mai multe exemple sau imagini pentru a face conținutul mai convingător.
-
+```
 
 ### 2.8. Reguli de conduită în evaluarea colegilor
 
@@ -446,7 +446,7 @@ Proiectul este organizat ca website static, cu date externe și integrare Google
 
 Structura tehnică generală:
 
-txt
+```txt
 GitHub Pages website
 │
 ├── index.html
@@ -458,18 +458,18 @@ GitHub Pages website
 ├── GitHub Actions pentru sincronizarea elevi.json
 │
 └── Google Apps Script + Google Sheets pentru evaluări
-
+```
 
 Rolul componentelor:
 
 | Componentă         | Rol                                                                           |
 | ------------------ | ----------------------------------------------------------------------------- |
-| index.html       | Structura paginii web.                                                        |
-| styles.css       | Designul vizual și adaptarea responsive.                                      |
-| scripts.js       | Logica aplicației: încărcare proiecte, afișare carduri, evaluare, comentarii. |
-| elevi.json       | Lista proiectelor afișate pe platformă.                                       |
+| `index.html`       | Structura paginii web.                                                        |
+| `styles.css`       | Designul vizual și adaptarea responsive.                                      |
+| `scripts.js`       | Logica aplicației: încărcare proiecte, afișare carduri, evaluare, comentarii. |
+| `elevi.json`       | Lista proiectelor afișate pe platformă.                                       |
 | Google Sheets      | Interfață simplă de administrare pentru profesor.                             |
-| GitHub Actions     | Automatizează actualizarea elevi.json din Google Sheets.                    |
+| GitHub Actions     | Automatizează actualizarea `elevi.json` din Google Sheets.                    |
 | Google Apps Script | Primește evaluările și returnează scorurile agregate.                         |
 | GitHub Pages       | Publică platforma online.                                                     |
 
@@ -479,76 +479,76 @@ Lista proiectelor este administrată într-un Google Spreadsheet.
 
 Profesorul poate gestiona proiectele într-un tabel cu următoarele coloane:
 
-txt
+```txt
 id | nume | url | categorie | activ
-
+```
 
 Câmpurile au următorul rol:
 
 | Câmp        | Explicație                                                   |
 | ----------- | ------------------------------------------------------------ |
-| id        | Identificator unic al proiectului. Trebuie să rămână stabil. |
-| nume      | Numele elevului sau al echipei.                              |
-| url       | Linkul GitHub Pages al proiectului.                          |
-| categorie | Categoria proiectului.                                       |
-| activ     | Controlează dacă proiectul apare sau nu pe site.             |
+| `id`        | Identificator unic al proiectului. Trebuie să rămână stabil. |
+| `nume`      | Numele elevului sau al echipei.                              |
+| `url`       | Linkul GitHub Pages al proiectului.                          |
+| `categorie` | Categoria proiectului.                                       |
+| `activ`     | Controlează dacă proiectul apare sau nu pe site.             |
 
 Exemplu:
 
-txt
+```txt
 id              | nume             | url                                                | categorie | activ
 mihaela-urzica  | Mihaela Urzica   | https://username.github.io/proiect/               | CV        | TRUE
 balaban-inna    | Inna Balaban     | https://username.github.io/proiect/               | CV        | TRUE
 demo-proiect    | Proiect Demo     |                                                    | demo      | FALSE
+```
 
+### 3.4. De ce este important câmpul `id`
 
-### 3.4. De ce este important câmpul id
-
-Câmpul id este cheia tehnică a proiectului. Acesta conectează proiectul afișat pe platformă cu evaluările salvate în Google Sheets.
+Câmpul `id` este cheia tehnică a proiectului. Acesta conectează proiectul afișat pe platformă cu evaluările salvate în Google Sheets.
 
 Dacă un proiect are:
 
-txt
+```txt
 id = balaban-inna
-
+```
 
 atunci evaluările pentru acest proiect vor avea:
 
-txt
+```txt
 projectId = balaban-inna
+```
 
-
-Dacă profesorul schimbă ulterior id, evaluările deja colectate nu se vor mai conecta corect cu proiectul.
+Dacă profesorul schimbă ulterior `id`, evaluările deja colectate nu se vor mai conecta corect cu proiectul.
 
 Recomandare:
 
-txt
+```txt
 prenume-nume
-
+```
 
 Exemple bune:
 
-txt
+```txt
 mihaela-urzica
 balaban-inna
 felicia-odajiu
-
+```
 
 De evitat:
 
-txt
+```txt
 Mihaela Urzica
 -elev
 test!!!
-
+```
 
 ### 3.5. Sincronizarea proiectelor din Google Sheets
 
-Pentru a evita modificarea manuală a fișierului elevi.json, proiectul poate folosi un workflow GitHub Actions.
+Pentru a evita modificarea manuală a fișierului `elevi.json`, proiectul poate folosi un workflow GitHub Actions.
 
 Fluxul este:
 
-txt
+```txt
 Profesorul modifică Google Sheet
         ↓
 Google Sheet este publicat ca CSV
@@ -560,7 +560,7 @@ Scriptul generează elevi.json
 GitHub face commit automat
         ↓
 GitHub Pages actualizează site-ul
-
+```
 
 Avantajul acestei soluții este că profesorul nu trebuie să modifice codul site-ului de fiecare dată când apare un proiect nou.
 
@@ -572,45 +572,45 @@ Pași:
 
 1. Deschide Google Spreadsheet.
 2. Selectează foaia cu proiectele.
-3. Accesează File.
-4. Selectează Share.
-5. Selectează Publish to web.
+3. Accesează `File`.
+4. Selectează `Share`.
+5. Selectează `Publish to web`.
 6. Alege foaia corectă.
-7. Alege formatul Comma-separated values (.csv).
+7. Alege formatul `Comma-separated values (.csv)`.
 8. Copiază linkul publicat.
 
 Linkul va avea o formă asemănătoare:
 
-txt
+```txt
 https://docs.google.com/spreadsheets/d/e/.../pub?gid=...&single=true&output=csv
-
+```
 
 Acest link este introdus în GitHub ca secret, de exemplu:
 
-txt
+```txt
 SHEET_CSV_URL
-
+```
 
 ### 3.7. Actualizarea ordinii proiectelor
 
 Dacă profesorul vrea să controleze ordinea proiectelor, există două opțiuni.
 
-Prima opțiune este păstrarea ordinii rândurilor din Google Sheets. În acest caz, scriptul care generează elevi.json nu trebuie să sorteze alfabetic datele.
+Prima opțiune este păstrarea ordinii rândurilor din Google Sheets. În acest caz, scriptul care generează `elevi.json` nu trebuie să sorteze alfabetic datele.
 
 A doua opțiune, mai recomandată, este adăugarea unei coloane:
 
-txt
+```txt
 ordine
-
+```
 
 Exemplu:
 
-txt
+```txt
 ordine | id              | nume             | url | categorie | activ
 1      | tudor-lapp      | Tudor LAPP       | ... | BOARD     | TRUE
 2      | mihaela-urzica  | Mihaela Urzica   | ... | CV        | TRUE
 3      | balaban-inna    | Inna Balaban     | ... | CV        | TRUE
-
+```
 
 Această coloană permite profesorului să controleze explicit ordinea de afișare fără să depindă doar de mutarea rândurilor.
 
@@ -620,7 +620,7 @@ Evaluarea proiectelor se realizează printr-un formular integrat în platformă.
 
 Când elevul trimite o evaluare:
 
-txt
+```txt
 Formular din platformă
         ↓
 Google Apps Script
@@ -630,11 +630,11 @@ Google Sheets
 Sinteză agregată
         ↓
 Afișare pe platformă
-
+```
 
 Evaluarea conține:
 
-* projectId;
+* `projectId`;
 * numele proiectului;
 * categoria proiectului;
 * linkul proiectului;
@@ -668,10 +668,10 @@ Pe lângă scorurile numerice, elevii oferă comentarii în patru câmpuri:
 
 | Câmp                 | Rol                                            |
 | -------------------- | ---------------------------------------------- |
-| strengthComment    | Ce este reușit în proiect.                     |
-| improvementComment | Ce trebuie îmbunătățit.                        |
-| audienceComment    | Cât de bine răspunde site-ul publicului-țintă. |
-| generalComment     | Comentariu general pentru autor.               |
+| `strengthComment`    | Ce este reușit în proiect.                     |
+| `improvementComment` | Ce trebuie îmbunătățit.                        |
+| `audienceComment`    | Cât de bine răspunde site-ul publicului-țintă. |
+| `generalComment`     | Comentariu general pentru autor.               |
 
 Aceste comentarii pot fi afișate în platformă prin fereastra de tip pop-up „Vezi comentariile”.
 
@@ -679,12 +679,12 @@ Aceste comentarii pot fi afișate în platformă prin fereastra de tip pop-up �
 
 Google Apps Script trebuie să aibă două funcționalități principale:
 
-1. doPost(e) pentru salvarea evaluărilor trimise din website.
-2. doGet(e) pentru returnarea sintezelor agregate către website.
+1. `doPost(e)` pentru salvarea evaluărilor trimise din website.
+2. `doGet(e)` pentru returnarea sintezelor agregate către website.
 
 Răspunsul trimis către website trebuie să includă:
 
-json
+```json
 {
   "ok": true,
   "projects": {
@@ -698,9 +698,9 @@ json
     }
   }
 }
+```
 
-
-Câmpul comments este important dacă profesorul dorește afișarea feedbackului individual.
+Câmpul `comments` este important dacă profesorul dorește afișarea feedbackului individual.
 
 ### 3.12. Publicarea Apps Script
 
@@ -708,20 +708,20 @@ Pentru ca platforma să poată trimite și primi date, Apps Script trebuie publi
 
 Setări recomandate:
 
-txt
+```txt
 Execute as: Me
 Who has access: Anyone
-
+```
 
 După orice modificare în Apps Script, trebuie făcut un nou deployment:
 
-txt
+```txt
 Deploy
 → Manage deployments
 → Edit
 → Version: New version
 → Deploy
-
+```
 
 Doar salvarea codului nu actualizează automat Web App-ul public.
 
@@ -729,7 +729,7 @@ Doar salvarea codului nu actualizează automat Web App-ul public.
 
 Structura recomandată a repository-ului:
 
-txt
+```txt
 proiecte-html-marinciuc/
 │
 ├── index.html
@@ -745,19 +745,19 @@ proiecte-html-marinciuc/
 └── .github/
     └── workflows/
         └── sync-elevi.yml
-
+```
 
 Descriere:
 
 | Fișier                      | Rol                                                     |
 | --------------------------- | ------------------------------------------------------- |
-| index.html                | Pagina principală a platformei.                         |
-| styles.css                | Stilizarea completă a platformei.                       |
-| scripts.js                | Logica aplicației.                                      |
-| elevi.json                | Lista proiectelor afișate.                              |
-| README.md                 | Documentația proiectului.                               |
-| sync-elevi-from-sheet.mjs | Script pentru generarea elevi.json din Google Sheets. |
-| sync-elevi.yml            | Workflow GitHub Actions pentru sincronizare automată.   |
+| `index.html`                | Pagina principală a platformei.                         |
+| `styles.css`                | Stilizarea completă a platformei.                       |
+| `scripts.js`                | Logica aplicației.                                      |
+| `elevi.json`                | Lista proiectelor afișate.                              |
+| `README.md`                 | Documentația proiectului.                               |
+| `sync-elevi-from-sheet.mjs` | Script pentru generarea `elevi.json` din Google Sheets. |
+| `sync-elevi.yml`            | Workflow GitHub Actions pentru sincronizare automată.   |
 
 ### 3.14. Cum poate un profesor să reproducă proiectul
 
@@ -767,7 +767,7 @@ Un alt profesor poate replica proiectul parcurgând următorii pași:
 2. Activează GitHub Pages.
 3. Creează un Google Sheet cu lista proiectelor.
 4. Publică Google Sheet-ul ca CSV.
-5. Configurează secretul SHEET_CSV_URL în GitHub.
+5. Configurează secretul `SHEET_CSV_URL` în GitHub.
 6. Rulează workflow-ul de sincronizare.
 7. Creează un Google Sheet pentru evaluări.
 8. Creează și publică Google Apps Script ca Web App.
@@ -880,12 +880,6 @@ Modelul este potrivit pentru liceu deoarece combină:
 * evaluare formativă;
 * utilizare responsabilă a AI;
 * publicare reală a produselor digitale.
-
-
-
-
-::contentReference[oaicite:2]{index=2}
-
 
 [1]: https://raw.githubusercontent.com/nudoarmetudor/proiecte-html-marinciuc/main/README.md "raw.githubusercontent.com"
 [2]: https://raw.githubusercontent.com/nudoarmetudor/proiecte-html-marinciuc/main/elevi.json "raw.githubusercontent.com"
