@@ -101,20 +101,30 @@
 "id":"peev-nasoila-vadanescu",
 "nume": "Peev Catalina, Nasoila Irina, Vadanescu Andrei",
 "url": "https://yami-ily.github.io/yami/",
-"categorie": "browser game"
+"categorie": "Browser Game"
 },
 {
    "id":"vition-fortu",
    "nume":"Valeria Vition, Forțu Amelia",
    "url":"https://valericarica.github.io/Find-the-landforms/",
-   "categoria":"browser game"
+   "categoria":"Browser Game"
 },
 {
    "id":"nelea-orlenco",
    "nume":"Nelea Orlenco",
    "url":"https://neleaturcanu8-byte.github.io/Nelly/",
    "categoria":"CV"
+},
+{
+    "id":"andrei-spataru",
+    "nume":"Andrei Spătaru",
+    "url":"https://andreispataru45-gif.github.io/Website./",
+    "categoria":"Sport"
 }
+
+
+
+  
 ]
 
 
