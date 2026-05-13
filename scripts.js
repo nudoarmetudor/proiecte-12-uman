@@ -695,18 +695,6 @@ function render(data) {
 
     grid.appendChild(card);
   });
-
-  document.querySelectorAll('[data-evaluate-id]').forEach(button => {
-    button.addEventListener('click', () => {
-      openEvaluationModal(button.getAttribute('data-evaluate-id'));
-    });
-  });
-
-  document.querySelectorAll('[data-comments-id]').forEach(button => {
-    button.addEventListener('click', () => {
-      openCommentsModal(button.getAttribute('data-comments-id'));
-    });
-  });
 }
 
 function applyFilters() {
@@ -1177,6 +1165,28 @@ resetFiltersBtn.addEventListener('click', () => {
 
   renderCategoryFilters(getCategories(allStudents));
   applyFilters();
+});
+
+grid.addEventListener('click', event => {
+  const commentsButton = event.target.closest('[data-comments-id]');
+  const evaluateButton = event.target.closest('[data-evaluate-id]');
+
+  if (commentsButton) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const projectId = commentsButton.getAttribute('data-comments-id');
+    openCommentsModal(projectId);
+    return;
+  }
+
+  if (evaluateButton) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const projectId = evaluateButton.getAttribute('data-evaluate-id');
+    openEvaluationModal(projectId);
+  }
 });
 
 init();
