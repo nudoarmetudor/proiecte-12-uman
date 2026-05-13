@@ -1,130 +1,134 @@
 [
   {
-    "id":"mihaela-urzica",
+    "id": "profir-adrian",
+    "nume": "Adrian Profir",
+    "url": "",
+    "categorie": "demo"
+  },
+  {
+    "id": "cupcic-alex",
+    "nume": "Alex Cupcic",
+    "url": "",
+    "categorie": "demo"
+  },
+  {
+    "id": "alexandra-orlovschi",
+    "nume": "Alexandra Orlovschi",
+    "url": "https://alexandeaorlovschi-ux.github.io/Site-informatica/",
+    "categorie": "Curs"
+  },
+  {
+    "id": "moisei-andrei",
+    "nume": "Andrei Moisei",
+    "url": "https://moisei2007andrei-cmyk.github.io/Andrei-Moise/",
+    "categorie": "CV"
+  },
+  {
+    "id": "andrei-spataru",
+    "nume": "Andrei Spătaru",
+    "url": "https://andreispataru45-gif.github.io/Website./",
+    "categorie": "Sport"
+  },
+  {
+    "id": "banari-beniamin",
+    "nume": "Beniamin Banari",
+    "url": "",
+    "categorie": "demo"
+  },
+  {
+    "id": "cebotari-ciprian",
+    "nume": "Ciprian Cebotari",
+    "url": "",
+    "categorie": "demo"
+  },
+  {
+    "id": "jimbei-damian",
+    "nume": "Damian Jîmbei",
+    "url": "",
+    "categorie": "demo"
+  },
+  {
+    "id": "daniel-evelina",
+    "nume": "Dodon Daniel",
+    "url": "https://dodonn786.github.io/BMWMotors/#strategie",
+    "categorie": "Instructaj"
+  },
+  {
+    "id": "felicia-odajiu",
+    "nume": "Felicia Odajiu",
+    "url": "https://odajiufelicia21-png.github.io/Vivastar/",
+    "categorie": "CV"
+  },
+  {
+    "id": "balaban-inna",
+    "nume": "Inna Balaban",
+    "url": "https://innabalaban007-gif.github.io/Inna/",
+    "categorie": "CV"
+  },
+  {
+    "id": "spinu-laurentiu",
+    "nume": "Laurențiu Spînu",
+    "url": "https://spinulaurentiu777.github.io/Laur/",
+    "categorie": "CV"
+  },
+  {
+    "id": "obada-liuba",
+    "nume": "Liuba Obadă",
+    "url": "",
+    "categorie": "demo"
+  },
+  {
+    "id": "capatana-magdalena",
+    "nume": "Magdalena Căpățână",
+    "url": "https://magdalena60.github.io/C-p-ina-Maria-Magdalena-/",
+    "categorie": "Beauty & Health"
+  },
+  {
+    "id": "mihaela-urzica",
     "nume": "Mihaela Urzica",
     "url": "https://mihaelaurzica01-lgtm.github.io/VictoriousStarM/",
     "categorie": "CV"
   },
   {
-    "id":"felicia-odajiu",
-    "nume": "Felicia Odajiu",
-    "url": "https://odajiufelicia21-png.github.io/Vivastar/",
+    "id": "nelea-orlenco",
+    "nume": "Nelea Orlenco",
+    "url": "https://neleaturcanu8-byte.github.io/Nelly/",
     "categorie": "CV"
-  },{
-    "id":"valeria-avadani",
-    "nume": "Valeria Avădăni",
-    "url": "https://danielaavadani0-coder.github.io/Valyboo/",
-    "categorie": "CV"
-  },{
-    "id":"victoria-hantea",
-    "nume": "Victoria Hantea",
-    "url": "https://victoriahantea100-code.github.io/Victoria-Hantea-/#proceduri",
-    "categorie": "Beauty & Health"
-  },{
-    "id":"nichita-mihalachi",
+  },
+  {
+    "id": "nichita-mihalachi",
     "nume": "Nichita Mihalachi",
-    "url": "placeholder",
-    "categorie": "demo"
-  },{
-    "id":"capatana-magdalena",
-    "nume": "Magdalena Căpățână",
-    "url": "https://magdalena60.github.io/C-p-ina-Maria-Magdalena-/",
-    "categorie": "Beauty & Health"
-  },{
-    "id":"cupcic-alex",
-    "nume": "Alex Cupcic",
-    "url": "placeholder",
-    "categorie": "demo"
-  },{
-    "id":"cebotari-ciprian",
-    "nume": "Ciprian Cebotari",
-    "url": "placeholder",
-    "categorie": "demo"
-  },{
-    "id":"profir-adrian",
-    "nume": "Adrian Profir",
-    "url": "placeholder",
-    "categorie": "demo"
-  },{
-    "id":"ceban-pantelimon",
-    "nume": "Pantelimon Ceban",
-    "url": "https://icloudceban-tech.github.io/Panchea/",
-    "categorie": "CV"
-  },{
-    "id":"spataru-andrei",
-    "nume": "Andrei Spătaru",
-    "url": "placeholder",
-    "categorie": "demo"
-  },{
-    "id":"jimbei-damian",
-    "nume": "Damian Jîmbei",
-    "url": "placeholder",
-    "categorie": "demo"
-  },{
-    "id":"obada-liuba",
-    "nume": "Liuba Obadă",
-    "url": "placeholder",
-    "categorie": "demo"
-  },{
-    "id":"banari-beniamin",
-    "nume": "Beniamin Banari",
-    "url": "placeholder",
-    "categorie": "demo"
-  },{
-    "id":"balaban-inna",
-    "nume": "Inna Balaban",
-    "url": "https://innabalaban007-gif.github.io/Inna/",
-    "categorie": "CV"
-  },{
-    "id":"spinu-laurentiu",
-    "nume": "Laurențiu Spînu",
-    "url": "https://spinulaurentiu777.github.io/Laur/",
-    "categorie": "CV"
-  },{
-    "id":"moisei-andrei",
-    "nume": "Andrei Moisei",
-    "url": "https://moisei2007andrei-cmyk.github.io/Andrei-Moise/",
-    "categorie": "CV"
-  },{
-    "id":"",
-    "nume": "",
-    "url": "placeholder",
+    "url": "",
     "categorie": "demo"
   },
   {
-"id":"daniel-evelina", 
-"nume":"Dodon Daniel",
-"url": "https://dodonn786.github.io/BMWMotors/#strategie",
-"categoria":"Instructaj"
-},
-{
-"id":"peev-nasoila-vadanescu",
-"nume": "Peev Catalina, Nasoila Irina, Vadanescu Andrei",
-"url": "https://yami-ily.github.io/yami/",
-"categorie": "Browser Game"
-},
-{
-   "id":"vition-fortu",
-   "nume":"Valeria Vition, Forțu Amelia",
-   "url":"https://valericarica.github.io/Find-the-landforms/",
-   "categoria":"Browser Game"
-},
-{
-   "id":"nelea-orlenco",
-   "nume":"Nelea Orlenco",
-   "url":"https://neleaturcanu8-byte.github.io/Nelly/",
-   "categoria":"CV"
-},
-{
-    "id":"andrei-spataru",
-    "nume":"Andrei Spătaru",
-    "url":"https://andreispataru45-gif.github.io/Website./",
-    "categoria":"Sport"
-}
-
-
-
-  
+    "id": "ceban-pantelimon",
+    "nume": "Pantelimon Ceban",
+    "url": "https://icloudceban-tech.github.io/Panchea/",
+    "categorie": "CV"
+  },
+  {
+    "id": "peev-nasoila-vadanescu",
+    "nume": "Peev Catalina, Nasoila Irina...",
+    "url": "https://yami-ily.github.io/yami/",
+    "categorie": "Browser Game"
+  },
+  {
+    "id": "valeria-avadani",
+    "nume": "Valeria Avădăni",
+    "url": "https://danielaavadani0-coder.github.io/Valyboo/",
+    "categorie": "CV"
+  },
+  {
+    "id": "vition-fortu",
+    "nume": "Valeria Vition, Forțu Amelia",
+    "url": "https://valericarica.github.io/Find-the-landforms/",
+    "categorie": "Browser Game"
+  },
+  {
+    "id": "victoria-hantea",
+    "nume": "Victoria Hantea",
+    "url": "https://victoriahantea100-code.github.io/Victoria-Hantea-/#proceduri",
+    "categorie": "Beauty & Health"
+  }
 ]
-
-
