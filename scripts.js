@@ -1,5 +1,5 @@
 const CONFIG = {
-  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbxBS_-DkwJX0eaheyBDrfF0_wdShCO_DlFQtlssbNdyVKAtt6YH1zyAGmmIiySc7ADo/exec',
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbx8Q69azUh5UlUSdfg-h3DwQOZOjIq06LNdoxVHvODIxFFLtnwjlqmLDtW0EbfsU3N7/exec',
   seedEvaluationsFile: 'evaluari.json',
   localFallbackStorageKey: 'portal-peer-review-fallback-v2',
   remoteRefreshDelayMs: 1800
