@@ -1,5 +1,3 @@
-Mai jos ai un `README.md` complet, gata de copy-paste în GitHub.
-
 ````md
 # Portal Proiecte Web Marinciuc
 
